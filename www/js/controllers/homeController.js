@@ -147,6 +147,7 @@ angular.module('HomeCtrl', [])
 
   /* GEOLOCATION */
   
+  
   parking.checkInstallation().then(function(response) {
     if(response == true){
       parking.getData().then(function(response) {
@@ -159,8 +160,7 @@ angular.module('HomeCtrl', [])
       });
     }
   })
-  
-  /*
+
 
   $scope.bikesharingInstallation = function(){
     bikesharing.checkInstallation().then(function(response) {
@@ -192,19 +192,18 @@ angular.module('HomeCtrl', [])
     })
   }
   
-  */
-
+  
   //var parkingMarkers = new L.layerGroup();
   //var bikesharingMarkers = new L.layerGroup();
   //var cityshuttleMarkers = new L.layerGroup();
   
-  /*
+  
 
   $scope.loadData = function(){
 
     var userMarker;
 
-    //geolocation.getPosition().then(function(position){
+    geolocation.getPosition().then(function(position){
 
       //$scope.latitude = position.coords.latitude;
       //$scope.longitude = position.coords.longitude;
@@ -234,9 +233,9 @@ angular.module('HomeCtrl', [])
         });
       });
 
-    //});
+    });
 	
-	*/
+	
 
     /* PARKING DATA */
 	
