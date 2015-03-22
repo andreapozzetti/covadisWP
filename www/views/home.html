@@ -1,8 +1,9 @@
 <div class="navbar navbar-left navbar-inverse navbar-fixed-top">
   <div class="container-fluid">
       <div class="navbar-header">
-          <button class="navbar-toggle navbar-toggle fa fa-bars fa-lg" type="button" data-toggle="collapse" data-target="#navbar-main" ng-click="slideMenu()">
-          </button>
+          <button class="navbar-toggle navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main" ng-click="slideMenu()">
+          B
+		  </button>
           <div class="navbar-brand">CO Vadis</div>
         </div>
     </div>
@@ -19,13 +20,13 @@
 
 	<nav id="slide-menu">
 		<ul class="list">
-	      <li class="list-item" ng-click="map()"><span class="fa fa-map-marker"></span><span class="list-text" translate>Map</span></li>
-	      <li class="list-item" ng-click="parking()"><span class="fa fa-car"></span><span class="list-text" translate>Parking List</span></li>
-	      <li class="list-item" ng-click="cityshuttle()"><span class="fa fa-bus"></span><span class="list-text" translate>City Shuttle</span></li>
-	      <li class="list-item" ng-click="bikesharing()"><span class="fa fa-bicycle"></span><span class="list-text" translate>Bike Sharing</span></li>
-	      <li class="list-item" ng-click="bustimetable()"><span class="fa fa-bus"></span><span class="list-text" translate>Bus Timetable</span></li>
-	      <li class="list-item" ng-click="boattimetable()"><span class="fa fa-ship"></span><span class="list-text" translate>Boat Timetable</span></li>
-	      <li class="list-item" ng-click="shopincomo()"><span class="fa fa-gift"></span><span class="list-text" translate>ShopInComo</span></li>
+	      <li><a href="" ng-click="map()" class="btn" translate>Map</a></li>
+	      <li><a href="" ng-click="parking()" class="btn" translate>Parking List</a></li>
+	      <li class="list-item"><a href="" ng-click="cityshuttle()" class="btn" translate>City Shuttle</a></li>
+	      <li class="list-item"><a href="" ng-click="bikesharing()" class="btn" translate>Bike Sharing</a></li>
+	      <li class="list-item"><a href="" ng-click="bustimetable()" class="btn" translate>Bus Timetable</a></li>
+	      <li class="list-item"><a href="" ng-click="boattimetable()" class="btn" translate>Boat Timetable</a></li>
+	      <li class="list-item"><a href="" ng-click="shopincomo()" class="btn" translate>ShopInComo</a></li>
 	      <!--<li class="list-item" ng-click="settings()"><span class="fa fa-cog"></span><span class="list-text" translate>Settings</span></li>-->
 		</ul>
 	</nav>
@@ -38,6 +39,6 @@
     		<a href="" ng-click="showCityshuttle()" class="btn btn-second-navbar" ng-class="showHideCityshuttle ? 'cityshuttle-active' : ''">City Shuttle</a>
   		</div>
 	</div>
-	<div id="map" class='custom-popup' ng-style="{{windowHeight}}"></div>
+	<div id="map" style="height: 800px"></div>
 	</div>
 </div>

@@ -1,4 +1,7 @@
 'use strict';
+
+
+
 document.addEventListener("deviceready", function() { 
 angular.element(document).ready(function () { 
 // retrieve the DOM element that had the ng-app attribute
@@ -9,7 +12,7 @@ angular.bootstrap(domElement, ["coVadis"]); });
 
 
 // public/js/app.js
-angular.module('coVadis', ['ngRoute', 'appRoutes', 'gettext', 'setLanguage', 'Ctrl', 'HomeCtrl', 'ParkListCtrl', 'ParkCtrl', 'BikesharingListCtrl', 'BikesharingCtrl', 'CityshuttleListCtrl', 'CityshuttleCtrl', 'Service']);
+angular.module('coVadis', ['ngRoute', 'appRoutes', 'gettext', 'setLanguage', 'Ctrl', 'HomeCtrl', 'SetupCtrl', 'ParkingListCtrl', 'Service']);
 
 
 // Declare app level module which depends on filters, and services
@@ -21,10 +24,9 @@ angular.module('appRoutes', [])
 		.when('/setup', {templateUrl: 'views/setup.html', controller: 'setupCtrl'})
 		.when('/parking', {templateUrl: 'views/parkingList.html', controller: 'parkingListCtrl'})
 		.when('/parking/:idParking', {templateUrl: 'views/parking.html', controller: 'parkingCtrl'})
-		.when('/bikesharing', {templateUrl: 'views/bikesharingList.html', controller: 'bikesharingListCtrl'})
-		.when('/bikesharing/:idBikesharing', {templateUrl: 'views/bikesharing.html', controller: 'bikesharingCtrl'})
-		.when('/cityshuttle', {templateUrl: 'views/cityshuttleList.html', controller: 'cityshuttleListCtrl'})
-		.when('/cityshuttle/:idCityshuttle', {templateUrl: 'views/cityshuttle.html', controller: 'cityshuttleCtrl'})
+		.when('/parkingmap', {templateUrl: 'views/parkingMap.html', controller: 'parkingMapCtrl'})
+		.when('/bikesharing', {templateUrl: 'views/bikesharing.html', controller: 'bikesharingCtrl'})
+		.when('/bus', {templateUrl: 'views/bus.html', controller: 'busCtrl'})
 		.when('/settings', {templateUrl: 'views/settings.html', controller: 'settingsCtrl'})
 		.otherwise({redirectTo: '/'});
 }])
@@ -32,13 +34,6 @@ angular.module('appRoutes', [])
 
 angular.module('setLanguage', ['gettext'])
 .run(function (gettextCatalog) {
-    
-	if(localStorage.getItem('language') =! null){
-	gettextCatalog.currentLanguage = localStorage.getItem('language');
-	}
-	else{
-	gettextCatalog.currentLanguage = "it";
-	}
-	
+    gettextCatalog.currentLanguage = localStorage.getItem('language');
 });
 
