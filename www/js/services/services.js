@@ -84,7 +84,8 @@ angular.module('Service', [])
       deferred = $q.defer();
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
       
       db.transaction(function(tx) {
         tx.executeSql("SELECT name FROM sqlite_master WHERE name='parking' and type='table'", [], function(tx, res) {
@@ -106,7 +107,8 @@ angular.module('Service', [])
       deferred = $q.defer();
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
       
       db.transaction(function(tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS parking (idParking INTEGER, name TEXT, address TEXT, latitude TEXT, longitude TEXT, totalParkingNumber INTEGER, freeParking INTEGER, minPrice INTEGER, maxPrice INTEGER, timetable TEXT, description_it TEXT, description_en TEXT, img TEXT, userDistance REAL, lastUpdate INTEGER)');
@@ -162,7 +164,8 @@ angular.module('Service', [])
       var deferred = $q.defer();
       
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
 
       db.transaction(function(tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS parking (idParking INTEGER, name TEXT, address TEXT, latitude TEXT, longitude TEXT, totalParkingNumber INTEGER, freeParking INTEGER, minPrice INTEGER, maxPrice INTEGER, timetable TEXT, description_it TEXT, description_en TEXT, img TEXT, userDistance REAL, lastUpdate INTEGER)');
@@ -188,7 +191,8 @@ angular.module('Service', [])
     checkToRemove: function(newIdArray) {
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
       
       db.transaction(function(tx) {
         return tx.executeSql('SELECT * FROM parking', [], function (tx, results) {
@@ -216,7 +220,8 @@ angular.module('Service', [])
     insertParking: function(data) {
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
       
       db.transaction(function(tx) {
         
@@ -231,7 +236,8 @@ angular.module('Service', [])
     updateParking: function(data) {
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
       
       db.transaction(function(tx) {
         return tx.executeSql('UPDATE parking SET idParking=?, name=?, address=?, latitude=?, longitude=?, totalParkingNumber=?, minPrice=?, maxPrice=?, timetable=?, description_it=?, description_en=?, img=?, lastUpdate=? WHERE idParking=?', [data.idParking, data.name, data.address, data.latitude, data.longitude, data.totalParkingNumber, data.minPrice, data.maxPrice, JSON.stringify(data.timetable), data.description_it, data.description_en, data.img, data.lastUpdate, data.idParking], function(tx, res) {
@@ -245,7 +251,8 @@ angular.module('Service', [])
     deleteParking: function(idParking) {
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
       
       db.transaction(function(tx) {
         return tx.executeSql('DELETE FROM parking WHERE idParking = '+ idParking +' ', [], function(tx, res) {
@@ -262,7 +269,8 @@ angular.module('Service', [])
       var deferred = $q.defer();
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
 
         db.transaction(function (tx) {
           
@@ -306,7 +314,8 @@ angular.module('Service', [])
     updateParkingDistance: function(idParking, distance) {
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
       
       db.transaction(function(tx) {
         
@@ -339,7 +348,8 @@ angular.module('Service', [])
     updateFreeParkingDB: function(idParking, freeParking) {
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
       
       db.transaction(function(tx) {
         return tx.executeSql('UPDATE parking SET freeParking=? WHERE idParking=?', [freeParking, idParking], function(tx, res) {
@@ -356,7 +366,8 @@ angular.module('Service', [])
       var deferred = $q.defer();
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
 
         db.transaction(function (tx) {
           tx.executeSql('SELECT * FROM parking', [], function (tx, results) {
@@ -397,7 +408,8 @@ angular.module('Service', [])
       var deferred = $q.defer();
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
 
         db.transaction(function (tx) {
           tx.executeSql('SELECT * FROM parking WHERE idParking = '+ idParking +'', [], function (tx, results) {
@@ -442,7 +454,8 @@ angular.module('Service', [])
       deferred = $q.defer();
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
       
       db.transaction(function(tx) {
         tx.executeSql("SELECT name FROM sqlite_master WHERE name='bikesharing' and type='table'", [], function(tx, res) {
@@ -464,7 +477,8 @@ angular.module('Service', [])
       deferred = $q.defer();
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
       
       db.transaction(function(tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS bikesharing (idBikesharing INTEGER, name TEXT, address TEXT, latitude TEXT, longitude TEXT, img TEXT, description_it TEXT, description_en TEXT, userDistance REAL, lastUpdate INTEGER)');
@@ -514,7 +528,8 @@ angular.module('Service', [])
     setupBikesharing: function(data) {
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
       var lastUpdate = new Date().getTime();
       
       db.transaction(function(tx) {
@@ -539,7 +554,8 @@ angular.module('Service', [])
     checkToRemove: function(newIdArray) {
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
       
       db.transaction(function(tx) {
         return tx.executeSql('SELECT * FROM bikesharing', [], function (tx, results) {
@@ -571,7 +587,8 @@ angular.module('Service', [])
     insertBikesharing: function(data) {
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
       
       db.transaction(function(tx) {
         
@@ -586,7 +603,8 @@ angular.module('Service', [])
     updateBikesharing: function(data) {
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
       
       db.transaction(function(tx) {
         return tx.executeSql('UPDATE bikesharing SET idBikesharing=?, name=?, address=?, latitude=?, longitude=?, description_it=?, description_en=?, img=?, lastUpdate=? WHERE idBikesharing=?', [data.idBikesharing, data.name, data.address, data.latitude, data.longitude, data.description_it, data.description_en, data.img, data.lastUpdate, data.idBikesharing], function(tx, res) {
@@ -600,7 +618,8 @@ angular.module('Service', [])
     deleteBikesharing: function(idBikesharing) {
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
       
       db.transaction(function(tx) {
         return tx.executeSql('DELETE FROM bikesharing WHERE idBikesharing = '+ idBikesharing +' ', [], function(tx, res) {
@@ -617,7 +636,8 @@ angular.module('Service', [])
       var deferred = $q.defer();
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
 
         db.transaction(function (tx) {
           
@@ -661,7 +681,8 @@ angular.module('Service', [])
     updateBikesharingDistance: function(idBikesharing, distance) {
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
       
       db.transaction(function(tx) {
         
@@ -679,7 +700,8 @@ angular.module('Service', [])
       var deferred = $q.defer();
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
 
         db.transaction(function (tx) {
           tx.executeSql('SELECT * FROM bikesharing', [], function (tx, results) {
@@ -715,7 +737,8 @@ angular.module('Service', [])
       var deferred = $q.defer();
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
 
         db.transaction(function (tx) {
           tx.executeSql('SELECT * FROM bikesharing WHERE idBikesharing = '+ idBikesharing +'', [], function (tx, results) {
@@ -756,7 +779,8 @@ angular.module('Service', [])
       deferred = $q.defer();
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
       
       db.transaction(function(tx) {
         tx.executeSql("SELECT name FROM sqlite_master WHERE name='cityshuttle' and type='table'", [], function(tx, res) {
@@ -778,7 +802,8 @@ angular.module('Service', [])
       deferred = $q.defer();
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
       
       db.transaction(function(tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS cityshuttle (idCityshuttle INTEGER, name TEXT, address TEXT, latitude TEXT, longitude TEXT, img TEXT, description_it TEXT, description_en TEXT, userDistance REAL, lastUpdate INTEGER)');
@@ -827,7 +852,8 @@ angular.module('Service', [])
     setupCityshuttle: function(data) {
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
 
       db.transaction(function(tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS cityshuttle (idCityshuttle INTEGER, name TEXT, address TEXT, latitude TEXT, longitude TEXT, img TEXT, description_it TEXT, description_en TEXT, userDistance REAL, lastUpdate INTEGER)');
@@ -852,7 +878,8 @@ angular.module('Service', [])
     checkToRemove: function(newIdArray) {
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
       
       db.transaction(function(tx) {
         return tx.executeSql('SELECT * FROM cityshuttle', [], function (tx, results) {
@@ -884,7 +911,8 @@ angular.module('Service', [])
     insertCityshuttle: function(data) {
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
       
       db.transaction(function(tx) {
         return tx.executeSql("INSERT INTO cityshuttle (idCityshuttle, name, address, latitude, longitude, img, description_it, description_en, userDistance, lastUpdate) VALUES (?,?,?,?,?,?,?,?,?,?)",
@@ -898,7 +926,8 @@ angular.module('Service', [])
     updateCityshuttle: function(data) {
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
       
       db.transaction(function(tx) {
         return tx.executeSql('UPDATE cityshuttle SET idCityshuttle=?, name=?, address=?, latitude=?, longitude=?, description_it=?, description_en=?, img=?, lastUpdate=? WHERE idCityshuttle=?', [data.idCityshuttle, data.name, data.address, data.latitude, data.longitude, data.description_it, data.description_en, data.img, data.lastUpdate, data.idCityshuttle], function(tx, res) {
@@ -912,7 +941,8 @@ angular.module('Service', [])
     deleteCityshuttle: function(idCityshuttle) {
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
       
       db.transaction(function(tx) {
         return tx.executeSql('DELETE FROM cityshuttle WHERE idCityshuttle = '+ idCityshuttle +' ', [], function(tx, res) {
@@ -929,7 +959,8 @@ angular.module('Service', [])
       var deferred = $q.defer();
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
 
         db.transaction(function (tx) {
           
@@ -973,7 +1004,8 @@ angular.module('Service', [])
     updateCityshuttleDistance: function(idCityshuttle, distance) {
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
       
       db.transaction(function(tx) {
         
@@ -991,7 +1023,8 @@ angular.module('Service', [])
       var deferred = $q.defer();
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
 
         db.transaction(function (tx) {
           tx.executeSql('SELECT * FROM cityshuttle', [], function (tx, results) {
@@ -1027,7 +1060,8 @@ angular.module('Service', [])
       var deferred = $q.defer();
 
       var dbSize = 5 * 1024 * 1024; // 5MB
-      var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+      //var db = openDatabase('coVadis', '1.0', 'Park List', dbSize);
+	  var db = window.sqlitePlugin.openDatabase({name: "coVadis.db", location: 1});
 
         db.transaction(function (tx) {
           tx.executeSql('SELECT * FROM cityshuttle WHERE idCityshuttle = '+ idCityshuttle +'', [], function (tx, results) {
