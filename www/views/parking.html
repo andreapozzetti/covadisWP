@@ -1,0 +1,96 @@
+<div class="navbar navbar-left navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+      <div class="navbar-header">
+          <button class="navbar-toggle navbar-toggle fa fa-chevron-left fa-lg" type="button" data-toggle="collapse" data-target="#navbar-main" ng-click="back()">
+          </button>
+          <div class="navbar-brand">CO Vadis</div>
+        </div>
+    </div>
+</div>
+
+<div class="site-container" ng-class="slide ? 'menu-active' : ''">
+
+  <nav id="slide-menu">
+    <ul class="list">
+      <li class="list-item" ng-click="map()"><span class="fa fa-map-marker"></span><span class="list-text" translate>Map</span></li>
+      <li class="list-item" ng-click="parking()"><span class="fa fa-car"></span><span class="list-text" translate>Parking List</span></li>
+      <li class="list-item" ng-click="cityshuttle()"><span class="fa fa-bus"></span><span class="list-text" translate>City Shuttle</span></li>
+      <li class="list-item" ng-click="bikesharing()"><span class="fa fa-bicycle"></span><span class="list-text" translate>Bike Sharing</span></li>
+      <li class="list-item" ng-click="bustimetable()"><span class="fa fa-bus"></span><span class="list-text" translate>Bus Timetable</span></li>
+      <li class="list-item" ng-click="boattimetable()"><span class="fa fa-ship"></span><span class="list-text" translate>Boat Timetable</span></li>
+      <li class="list-item" ng-click="shopincomo()"><span class="fa fa-gift"></span><span class="list-text" translate>ShopInComo</span></li>
+      <!--<li class="list-item" ng-click="settings()"><span class="fa fa-cog"></span><span class="list-text" translate>Settings</span></li>-->
+    </ul>
+  </nav>
+
+  <div id="content" class="content">
+  	<div class="parking-top">
+		<div class="loader" ng-hide="loading">
+			<div class="fa fa-spinner fa-pulse fa-4x"></div>
+		</div>
+		<div class="page-header" style="background: url('img/parking_header.jpg') center center" ng-show="loading">
+			<div class="header-info">
+				<div class="col-sm-8 col-xs-8">
+			    	<p class="name">{{parkingInfo.name}}</p>
+			    	<p class="address">{{parkingInfo.address}}</p>
+			    </div>
+			    <div class="col-sm-4 col-xs-4">
+			    	<div class="distance">{{parkingInfo.userDistance}} Km</div>
+				 	<div ng-class="parkingInfo.freeParking >= 300 ? 'parking-number-success' : parkingInfo.freeParking < 50 ? 'parking-number-alert' : 'parking-number-warning'">
+				   		<div class="number">{{parkingInfo.freeParking}}<small>/{{parkingInfo.totalParkingNumber}}</small></div>
+				   	</div>
+			    </div>
+			</div>
+		</div>
+		<div class="page-content" ng-show="loading">
+			<div class="list-group">
+				<div class="list-group-item">
+					<p class="list-group-item-text">{{parkingInfo.description}}</p>
+				</div>
+				<div class="list-group-item">
+					<a href="" class="btn btn-primary btn-block" data-toggle="modal" data-target="#navigate">Navigate</a>
+				</div>
+				<div class="list-group-item">
+				    <h4 class="list-group-item-heading" translate>Timetable</h4>
+				    <p class="list-group-item-text">
+				    	<ul class="timetable">
+				    		<li class="timetable-item" translate>Monday: {{parkingInfo.timetable.monday}}</li>
+				    		<li class="timetable-item" translate>Tuesday: {{parkingInfo.timetable.tuesday}}</li>
+				    		<li class="timetable-item" translate>Wednesday: {{parkingInfo.timetable.wednesday}}</li>
+				    		<li class="timetable-item" translate>Thursday: {{parkingInfo.timetable.thursday}}</li>
+				    		<li class="timetable-item" translate>Friday: {{parkingInfo.timetable.friday}}</li>
+				    		<li class="timetable-item" translate>Saturday: {{parkingInfo.timetable.saturday}}</li>
+				    		<li class="timetable-item" translate>Sunday: {{parkingInfo.timetable.sunday}}</li>
+				    	</ul>
+				    </p>
+				</div>
+				<div class="list-group-item">
+					<h4 class="list-group-item-heading" translate>Cost per hour</h4>
+					<p class="list-group-item-text">
+						<ul class="cost">
+							<li class="cost-item">Min: {{parkingInfo.minPrice}}</li>
+							<li class="cost-item">Max: {{parkingInfo.maxPrice}}</li>
+						</ul>
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <div class="modal fade" id="navigate" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+      				<div class="list-group">
+                    <a href="" ng-click="navigate(parkingInfo.idParking,parkingInfo.name,parkingInfo.latitude,parkingInfo.longitude,15)" class="list-group-item" data-dismiss="modal" translate>ALERT me if number of free parking became less than 5 in the next 15 minutes</a>
+      				<a href="" ng-click="navigate(parkingInfo.idParking,parkingInfo.name,parkingInfo.latitude,parkingInfo.longitude,30)" class="list-group-item" data-dismiss="modal" translate>ALERT me if number of free parking became less than 5 in the next 30 minutes</a>
+    				</div>
+                </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+

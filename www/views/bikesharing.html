@@ -1,0 +1,54 @@
+<div class="navbar navbar-left navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+      <div class="navbar-header">
+          <button class="navbar-toggle navbar-toggle fa fa-chevron-left fa-lg" type="button" data-toggle="collapse" data-target="#navbar-main" ng-click="back()">
+          </button>
+          <div class="navbar-brand">CO Vadis</div>
+        </div>
+    </div>
+</div>
+
+<div class="site-container" ng-class="slide ? 'menu-active' : ''">
+
+  <nav id="slide-menu">
+    <ul class="list">
+      <li class="list-item" ng-click="map()"><span class="fa fa-map-marker"></span><span class="list-text" translate>Map</span></li>
+      <li class="list-item" ng-click="parking()"><span class="fa fa-car"></span><span class="list-text" translate>Parking List</span></li>
+      <li class="list-item" ng-click="cityshuttle()"><span class="fa fa-bus"></span><span class="list-text" translate>City Shuttle</span></li>
+      <li class="list-item" ng-click="bikesharing()"><span class="fa fa-bicycle"></span><span class="list-text" translate>Bike Sharing</span></li>
+      <li class="list-item" ng-click="bustimetable()"><span class="fa fa-bus"></span><span class="list-text" translate>Bus Timetable</span></li>
+      <li class="list-item" ng-click="boattimetable()"><span class="fa fa-ship"></span><span class="list-text" translate>Boat Timetable</span></li>
+      <li class="list-item" ng-click="shopincomo()"><span class="fa fa-gift"></span><span class="list-text" translate>ShopInComo</span></li>
+      <!--<li class="list-item" ng-click="settings()"><span class="fa fa-cog"></span><span class="list-text" translate>Settings</span></li>-->
+    </ul>
+  </nav>
+
+  <div id="content" class="content">
+  	<div class="parking-top">
+		<div class="loader" ng-hide="loading">
+			<div class="fa fa-spinner fa-pulse fa-4x"></div>
+		</div>
+		<div class="page-header" style="background: url('img/parking_header.jpg') center center" ng-show="loading">
+			<div class="header-info">
+				<div class="col-sm-8 col-xs-8">
+			    	<p class="name">{{bikesharingInfo.name}}</p>
+			    	<p class="address">{{bikesharingInfo.address}}</p>
+			    </div>
+			    <div class="col-sm-4 col-xs-4">
+			    	<div class="distance">{{bikesharingInfo.userDistance}} Km</div>
+			    </div>
+			</div>
+		</div>
+		<div class="page-content" ng-show="loading">
+			<div class="list-group">
+				<div class="list-group-item">
+					<p class="list-group-item-text">{{bikesharingInfo.description}}</p>
+				</div>
+				<div class="list-group-item">
+					<a href="" class="btn btn-primary btn-block" ng-click="navigate(bikesharingInfo.idParking,bikesharingInfo.name,bikesharingInfo.latitude,bikesharingInfo.longitude)">Navigate</a>
+				</div>
+			</div>
+		</div>
+	</div>
+  </div>
+</div>

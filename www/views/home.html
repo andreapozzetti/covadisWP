@@ -1,0 +1,43 @@
+<div class="navbar navbar-left navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+      <div class="navbar-header">
+          <button class="navbar-toggle navbar-toggle fa fa-bars fa-lg" type="button" data-toggle="collapse" data-target="#navbar-main" ng-click="slideMenu()">
+          </button>
+          <div class="navbar-brand">CO Vadis</div>
+        </div>
+    </div>
+</div>
+
+<div class="site-container" ng-class="slide ? 'menu-active' : ''">
+
+<!--
+	<div class="loader" ng-hide="loading">
+		<div class="fa fa-spinner fa-pulse fa-4x"></div>
+		<div>geolocating</div>
+	</div>
+-->
+
+	<nav id="slide-menu">
+		<ul class="list">
+	      <li class="list-item" ng-click="map()"><span class="fa fa-map-marker"></span><span class="list-text" translate>Map</span></li>
+	      <li class="list-item" ng-click="parking()"><span class="fa fa-car"></span><span class="list-text" translate>Parking List</span></li>
+	      <li class="list-item" ng-click="cityshuttle()"><span class="fa fa-bus"></span><span class="list-text" translate>City Shuttle</span></li>
+	      <li class="list-item" ng-click="bikesharing()"><span class="fa fa-bicycle"></span><span class="list-text" translate>Bike Sharing</span></li>
+	      <li class="list-item" ng-click="bustimetable()"><span class="fa fa-bus"></span><span class="list-text" translate>Bus Timetable</span></li>
+	      <li class="list-item" ng-click="boattimetable()"><span class="fa fa-ship"></span><span class="list-text" translate>Boat Timetable</span></li>
+	      <li class="list-item" ng-click="shopincomo()"><span class="fa fa-gift"></span><span class="list-text" translate>ShopInComo</span></li>
+	      <!--<li class="list-item" ng-click="settings()"><span class="fa fa-cog"></span><span class="list-text" translate>Settings</span></li>-->
+		</ul>
+	</nav>
+
+	<div id="content" class="content">
+	<div class="second-navbar second-navbar-fixed-top">
+    	<div class="btn-group btn-group-justified">
+    		<a href="" ng-click="showParking()" class="btn btn-second-navbar" ng-class="showHideParking ? 'parking-active' : ''">Parking</a>
+    		<a href="" ng-click="showBikesharing()" class="btn btn-second-navbar" ng-class="showHideBikesharing ? 'bike-active' : ''">Bike Sharing</a>
+    		<a href="" ng-click="showCityshuttle()" class="btn btn-second-navbar" ng-class="showHideCityshuttle ? 'cityshuttle-active' : ''">City Shuttle</a>
+  		</div>
+	</div>
+	<div id="map" class='custom-popup' ng-style="{{windowHeight}}"></div>
+	</div>
+</div>

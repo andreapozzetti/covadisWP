@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>coVadis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/leaflet.label.css">
+    <!--<link rel="stylesheet" href="css/leaflet.awesome-markers.css">-->
+    <!--<link rel="stylesheet" href="css/font-awesome.css">-->
+    <link rel="stylesheet" href="css/bootswatch.min.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../bower_components/html5shiv/dist/html5shiv.js"></script>
+      <script src="../bower_components/respond/dest/respond.min.js"></script>
+    <![endif]-->
+    <script src="cordova.js"></script>
+	<script src="js/lib/platformOverrides.js"></script>
+    <script src="js/lib/jquery-1.11.2.min.js"></script>
+    <script src="js/lib/spin.min.js"></script>
+    <script src="js/lib/leaflet.js"></script>
+    <script src="js/lib/leaflet.label.js"></script>
+    <!--<script src="js/lib/leaflet.spin.js"></script>-->
+    <!--<script src="js/lib/leaflet.awesome-markers.min.js"></script>-->
+    <script src="js/lib/angular.min.js"></script>
+    <script src="js/lib/angular-route.min.js"></script>
+    <script src="js/lib/angular-gettext.min.js"></script>
+    <script src="js/lib/bootstrap.min.js"></script>
+    <script src="js/controllers/controllers.js"></script>
+    <script src="js/controllers/homeController.js"></script>
+    <script src="js/controllers/parkListController.js"></script>
+    <script src="js/controllers/parkController.js"></script>
+    <script src="js/controllers/bikesharingListController.js"></script>
+    <script src="js/controllers/bikesharingController.js"></script>
+    <script src="js/controllers/cityshuttleListController.js"></script>
+    <script src="js/controllers/cityshuttleController.js"></script>
+    <script src="js/services/services.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/PushNotification.js"></script>
+
+	
+  </head>
+  <body>
+    <div>
+      <div class="header"></div>
+      <div ng-view></div>
+    </div>
+    <!--
+    <footer>
+      <div class="navbar navbar-inverse navbar-fixed-bottom">
+          <div class="container-fluid">
+          </div>
+      </div>
+    </footer>
+    -->
+
+  </body>
+</html>
+

@@ -1,0 +1,19 @@
+<div class="navbar navbar-left navbar-inverse navbar-fixed-top">
+	<div class="container-fluid">
+    	<div class="navbar-header">
+          <button class="navbar-toggle glyphicon glyphicon-chevron-left icon-white" type="button" data-toggle="collapse" data-target="#navbar-main" ng-click="backToHomeFromParkingMap()">
+          </button>
+          <div class="navbar-brand">CO Vadis</div>
+        </div>
+    </div>
+</div>
+
+<div class="second-navbar second-navbar-fixed-top">
+    <div class="btn-group btn-group-justified">
+    	<a href="" ng-click="showList('list')" class="btn btn-second-navbar">List</a>
+  		<a href="" class="btn btn-second-navbar active">Map</a>
+  	</div>
+</div>
+<div class="container-fluid">
+		<div id="map" ng-style="{{windowHeight}}"></div>
+</div>
