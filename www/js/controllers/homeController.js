@@ -316,10 +316,12 @@ angular.module('HomeCtrl', [])
     $scope.showHideCityshuttle = false;
      
   });
+  
+  */
 
   } // END OF LOAD DATA
   
-  */
+
   
   /*
 
