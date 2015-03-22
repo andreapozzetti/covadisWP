@@ -22,7 +22,7 @@
 	<script src="js/menu.js"></script>
 	
 	<!-- JS -->
-	<script src="js/index.js"></script>
+	<script src="js/parkingList.js"></script>
 
   </head>
   <body>
@@ -43,11 +43,11 @@
 			<ul class="list">
 			  <li class="list-item"><a href="index.html" class="btn">Map</a></li>
 			  <li class="list-item"><a href="parkinglist.html" class="btn">Parking List</a></li>
-			  <li class="list-item"><a href="cityshuttlelist.html" class="btn" translate>City Shuttle</a></li>
-			  <li class="list-item"><a href="bikesharinglist.html" class="btn" translate>Bike Sharing</a></li>
-			  <li class="list-item"><a href="" class="btn" translate>Bus Timetable</a></li>
-			  <li class="list-item"><a href="" class="btn" translate>Boat Timetable</a></li>
-			  <li class="list-item"><a href="" class="btn" translate>ShopInComo</a></li>
+			  <li class="list-item"><a href="cityshuttlelist.html" class="btn" >City Shuttle</a></li>
+			  <li class="list-item"><a href="bikesharinglist.html" class="btn" >Bike Sharing</a></li>
+			  <li class="list-item"><a href="" class="btn" >Bus Timetable</a></li>
+			  <li class="list-item"><a href="" class="btn">Boat Timetable</a></li>
+			  <li class="list-item"><a href="" class="btn">ShopInComo</a></li>
 			  <!--<li class="list-item" ng-click="settings()"><span class="fa fa-cog"></span><span class="list-text" translate>Settings</span></li>-->
 			</ul>
 		</nav>
@@ -55,12 +55,20 @@
 		<div id="content"  class="content">
 			<div class="second-navbar second-navbar-fixed-top">
 				<div class="btn-group btn-group-justified">
-					<div class="btn btn-second-navbar parking parking-active">Parking</div>
-					<div class="btn btn-second-navbar bikesharing bike-active">Bike Sharing</div>
-					<div class="btn btn-second-navbar cityshuttle">City Shuttle</div>
+					<a id="distance" class="btn btn-second-navbar">Order by Distance</a>
+					<a id="freeparking" class="btn btn-second-navbar">Order by Free Parking</a>
 				</div>
 			</div>
-			<div id="map" style="height: 800px"></div>
+			
+			<div class="top">
+			  <div class="loader">
+				<div class="fa fa-spinner fa-pulse fa-4x"></div>
+			  </div>
+				<div class="list-group" id="list">
+
+				</div>
+			</div>
+		  
 		</div>
 	</div>
   </body>
