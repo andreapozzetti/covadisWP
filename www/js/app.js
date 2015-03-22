@@ -32,6 +32,13 @@ angular.module('appRoutes', [])
 
 angular.module('setLanguage', ['gettext'])
 .run(function (gettextCatalog) {
-    gettextCatalog.currentLanguage = localStorage.getItem('language');
+    
+	if(localStorage.getItem('language') =! null){
+	gettextCatalog.currentLanguage = localStorage.getItem('language');
+	}
+	else{
+	gettextCatalog.currentLanguage = "it";
+	}
+	
 });
 

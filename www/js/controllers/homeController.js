@@ -5,6 +5,7 @@ angular.module('HomeCtrl', [])
   /* LANGUANGE */
 
   var language = "it";
+  localStorage.setItem("language", language);
 
   /*
   navigator.globalization.getPreferredLanguage(
@@ -147,7 +148,7 @@ angular.module('HomeCtrl', [])
 
   /* GEOLOCATION */
   
-  
+  /*
   parking.checkInstallation().then(function(response) {
     if(response == true){
       parking.getData().then(function(response) {
@@ -192,12 +193,14 @@ angular.module('HomeCtrl', [])
     })
   }
   
+  */
+  
   
   //var parkingMarkers = new L.layerGroup();
   //var bikesharingMarkers = new L.layerGroup();
   //var cityshuttleMarkers = new L.layerGroup();
   
-  
+  /*
 
   $scope.loadData = function(){
 
@@ -317,11 +320,11 @@ angular.module('HomeCtrl', [])
      
   });
   
-  */
+ 
 
   } // END OF LOAD DATA
   
-
+ */
   
   /*
 
