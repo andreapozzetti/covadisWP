@@ -22,15 +22,15 @@
 	<script src="js/menu.js"></script>
 	
 	<!-- JS -->
-	<script src="js/parkingList.js"></script>
+	<script src="js/parking.js"></script>
 
   </head>
   <body>
 	<div class="navbar navbar-left navbar-inverse navbar-fixed-top">
 	  <div class="container-fluid">
 		  <div class="navbar-header">
-			  <button id="menu" class="navbar-toggle navbar-toggle menu-trigger" type="button">
-			  <img src="img/menu.png">
+			  <button id="back" class="navbar-toggle navbar-toggle menu-trigger" type="button">
+			  <img src="img/back.png">
 			  </button>
 			  <div class="navbar-brand">CO Vadis</div>
 			</div>
@@ -53,22 +53,58 @@
 		</nav>
 		<!-- Content panel -->
 		<div id="content"  class="content">
-			<div class="second-navbar second-navbar-fixed-top">
-				<div class="btn-group btn-group-justified">
-					<a id="distance" class="btn btn-second-navbar">Order by Distance</a>
-					<a id="freeparking" class="btn btn-second-navbar">Order by Free Parking</a>
+			<div class="parking-top">
+				<div class="loader">
+					<div class="fa fa-spinner fa-pulse fa-4x"></div>
 				</div>
-			</div>
-			
-			<div class="top">
-			  <div class="loader">
-				<div class="fa fa-spinner fa-pulse fa-4x"></div>
-			  </div>
-				<div class="list-group" id="list">
-
+				<div class="page-header" style="background: url('img/parking_header.jpg') center center">
+					<div class="header-info">
+						<div class="col-sm-8 col-xs-8">
+							<p class="name"></p>
+							<p class="address"></p>
+						</div>
+						<div class="col-sm-4 col-xs-4">
+							<div class="distance"></div>
+							<div class="number-container">
+								<div class="number"></small></div>
+							</div>
+						</div>
+					</div>
 				</div>
-			</div>
-		  
+				<div class="page-content">
+					<div class="list-group">
+						<div class="list-group-item">
+							<p class="list-group-item-text description"></p>
+						</div>
+						<div class="list-group-item">
+							<a href="" class="btn btn-primary btn-block" data-toggle="modal" data-target="#navigate">Navigate</a>
+						</div>
+						<div class="list-group-item">
+							<h4 class="list-group-item-heading" >Timetable</h4>
+							<p class="list-group-item-text">
+								<ul class="timetable">
+									<li class="timetable-item monday" ></li>
+									<li class="timetable-item tuesday" ></li>
+									<li class="timetable-item wednesday" ></li>
+									<li class="timetable-item thursday" ></li>
+									<li class="timetable-item friday" ></li>
+									<li class="timetable-item saturday" ></li>
+									<li class="timetable-item sunday" ></li>
+								</ul>
+							</p>
+						</div>
+						<div class="list-group-item">
+							<h4 class="list-group-item-heading" >Cost per hour</h4>
+							<p class="list-group-item-text">
+								<ul class="cost">
+									<li class="cost-item cost-min"></li>
+									<li class="cost-item cost-max"></li>
+								</ul>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>		
 		</div>
 	</div>
   </body>
