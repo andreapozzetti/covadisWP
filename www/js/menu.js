@@ -10,7 +10,7 @@ function onDeviceReady(){
 	});
 	
 	$( "button#back" ).click(function() {
-	  window.history.back()
+	  window.history.back();
 	});
 	
 	$( "a.bus-timetable" ).click(function() {
