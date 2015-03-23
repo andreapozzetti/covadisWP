@@ -42,7 +42,9 @@ navigator.globalization.getPreferredLanguage(
 							"thursday" : "Giovedi",
 							"friday" : "Venerdi",
 							"saturday" : "Sabato",
-							"sunday" : "Domenica"
+							"sunday" : "Domenica",
+							"alert-15": "Avvisami se i posti liberi diventano meno di 5 nei prossimi 15 minuti",
+							"alert-30": "Avvisami se i posti liberi diventano meno di 5 nei prossimi 30 minuti"
 						}
 			translate(data);
 		}
@@ -63,7 +65,9 @@ navigator.globalization.getPreferredLanguage(
 							"thursday" : "thursday",
 							"friday" : "friday",
 							"saturday" : "saturday",
-							"sunday" : "sunday"
+							"sunday" : "sunday",
+							"alert-15": "ALERT me if number of free parking became less than 5 in the next 15 minutes",
+							"alert-30": "ALERT me if number of free parking became less than 5 in the next 30 minutes"
 						}
 			translate(data);
 		}
