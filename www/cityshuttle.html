@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>coVadis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+	
+	<!-- CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/bootswatch.min.css">
+	<link rel="stylesheet" href="css/menu.css">
+	
+	<!-- LIB JS -->
+	
+    <script src="cordova.js"></script>
+	<script src="js/lib/platformOverrides.js"></script>
+    <script src="js/lib/jquery-1.11.2.min.js"></script>
+    <script src="js/lib/leaflet.js"></script>
+	<script src="js/PushNotification.js"></script>
+	<script src="js/menu.js"></script>
+	
+	<!-- JS -->
+	<script src="js/parking.js"></script>
+
+  </head>
+  <body>
+	<div class="navbar navbar-left navbar-inverse navbar-fixed-top">
+	  <div class="container-fluid">
+		  <div class="navbar-header">
+			  <button id="back" class="navbar-toggle navbar-toggle menu-trigger" type="button">
+			  <img src="img/back.png">
+			  </button>
+			  <div class="navbar-brand">CO Vadis</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="site-container">
+		<!-- Navigation -->
+		<nav id="slide-menu">
+			<ul class="list">
+			  <li class="list-item"><a href="index.html" class="btn">Map</a></li>
+			  <li class="list-item"><a href="parkinglist.html" class="btn">Parking List</a></li>
+			  <li class="list-item"><a href="cityshuttlelist.html" class="btn" >City Shuttle</a></li>
+			  <li class="list-item"><a href="bikesharinglist.html" class="btn" >Bike Sharing</a></li>
+			  <li class="list-item"><a class="btn bus-timetable" >Bus Timetable</a></li>
+			  <li class="list-item"><a class="btn boat-timetable">Boat Timetable</a></li>
+			  <li class="list-item"><a class="btn shopincomo">ShopInComo</a></li>
+			  <!--<li class="list-item" ng-click="settings()"><span class="fa fa-cog"></span><span class="list-text" translate>Settings</span></li>-->
+			</ul>
+		</nav>
+		<!-- Content panel -->
+		<div id="content"  class="content">
+			<div class="parking-top">
+				<div class="loader">
+					<div class="fa fa-spinner fa-pulse fa-4x"></div>
+				</div>
+				<div class="page-header" style="background: url('img/parking_header.jpg') center center">
+					<div class="header-info">
+						<div class="col-sm-8 col-xs-8">
+							<p class="name"></p>
+							<p class="address"></p>
+						</div>
+						<div class="col-sm-4 col-xs-4">
+							<div class="distance"></div>
+						</div>
+					</div>
+				</div>
+				<div class="page-content">
+					<div class="list-group">
+						<div class="list-group-item">
+							<p class="list-group-item-text description"></p>
+						</div>
+						<div class="list-group-item">
+							<a href="" class="btn btn-primary btn-block" data-toggle="modal" data-target="#navigate">Navigate</a>
+						</div>
+					</div>
+				</div>
+			</div>		
+		</div>
+	</div>
+  </body>
+</html>
+
+

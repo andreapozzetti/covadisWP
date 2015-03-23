@@ -76,7 +76,7 @@ function onDeviceReady(){
 				Math.sin(dLon/2) * Math.sin(dLon/2);
 
 			  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-			  var distance = (R * c * 1000).toFixed(1); //meters
+			  var distance = (R * c).toFixed(1); //Km
 							
 			  switch (true) {
 				case (data[i].freeParkingNumber>100):
@@ -92,7 +92,7 @@ function onDeviceReady(){
 				break;
 			  }
 
-			  var popupContent = "<a href='#/parking/"+data[i].idParking+"' class='map-popup'><h4>"+data[i].name+" ("+data[i].freeParkingNumber+"/"+data[i].totalParkingNumber+")</h4><p>"+data[i].address+" - "+distance+"Km   <i class='fa fa-angle-right'></i></p></a>"
+			  var popupContent = "<a href='parking.html#"+data[i].idParking+"' class='map-popup'><h4>"+data[i].name+" ("+data[i].freeParkingNumber+"/"+data[i].totalParkingNumber+")</h4><p>"+data[i].address+" - "+distance+"Km   <i class='fa fa-angle-right'></i></p></a>"
 
 			  parkingMarkers.addLayer(L.marker([parseFloat(data[i].latitude), parseFloat(data[i].longitude)],{icon: color})
 			  .bindPopup(popupContent, {closeButton: false}))
@@ -124,9 +124,9 @@ function onDeviceReady(){
 				Math.sin(dLon/2) * Math.sin(dLon/2);
 
 			  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-			  var distance = (R * c * 1000).toFixed(1); //meters
+			  var distance = (R * c).toFixed(1); //Km
 
-			  var popupContent = "<a href='#/bikesharing/"+data[i].idBikesharing+"' class='map-popup'><h4>"+data[i].name+"</h4><p>"+data[i].address+" - "+distance+"Km   <i class='fa fa-angle-right'></i></p></a>";
+			  var popupContent = "<a href='bikesharing.html#"+data[i].idBikesharing+"' class='map-popup'><h4>"+data[i].name+"</h4><p>"+data[i].address+" - "+distance+"Km   <i class='fa fa-angle-right'></i></p></a>";
 					  
 			  bikesharingMarkers.addLayer(L.marker([parseFloat(data[i].latitude), parseFloat(data[i].longitude)], {icon: bikeIcon})
 				.bindPopup(popupContent, {closeButton: false}))
@@ -160,9 +160,9 @@ function onDeviceReady(){
 				Math.sin(dLon/2) * Math.sin(dLon/2);
 
 			  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-			  var distance = (R * c * 1000).toFixed(1); //meters
+			  var distance = (R * c).toFixed(1); //Km
 
-			  var popupContent = "<a href='#/cityshuttle/"+data[i].idCityshuttle+"' class='map-popup'><h4>"+data[i].name+"</h4><p>"+data[i].address+" - "+data[i].userDistance+"Km   <i class='fa fa-angle-right'></i></p></a>";
+			  var popupContent = "<a href='cityshuttle.html#"+data[i].idCityshuttle+"' class='map-popup'><h4>"+data[i].name+"</h4><p>"+data[i].address+" - "+data[i].userDistance+"Km   <i class='fa fa-angle-right'></i></p></a>";
 					  
 			  cityshuttleMarkers.addLayer(L.marker([parseFloat(data[i].latitude), parseFloat(data[i].longitude)], {icon: busIcon})
 				.bindPopup(popupContent, {closeButton: false}))

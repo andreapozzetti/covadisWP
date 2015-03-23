@@ -16,8 +16,33 @@ function onDeviceReady(){
         var longitude = position.coords.longitude;
         localStorage.setItem("userLatitude", latitude);
         localStorage.setItem("userLongitude", longitude);
+							
+		parkingList(function(data){
+							
+			var userLatitude = localStorage.getItem("userLatitude");
+			var userLongitude = localStorage.getItem("userLongitude");
+							  
+			for(var i=0;i<data.length;i++){
+									
+				var R = 6371; // km
+				var dLat = (data[i].latitude-userLatitude) * Math.PI / 180;
+				var dLon = (data[i].longitude-userLongitude) * Math.PI / 180;
+				var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+						Math.cos(userLatitude * Math.PI / 180 ) * Math.cos(data[i].latitude * Math.PI / 180 ) *
+						Math.sin(dLon/2) * Math.sin(dLon/2);
 
-    };
+				var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+				var distance = (R * c).toFixed(1); //Km
+						
+				data[i].distance = distance;
+			}
+			
+			localStorage.setItem("parkingListData", JSON.stringify(data));
+			sorting("distance");
+			
+		});
+	
+	}; //end of onSuccess
 	
 	function parkingList(parkingData) {
 		$.ajax({
@@ -32,31 +57,6 @@ function onDeviceReady(){
 			console.log(error)
 		})
 	}
-						
-	parkingList(function(data){
-						
-		var userLatitude = localStorage.getItem("userLatitude");
-		var userLongitude = localStorage.getItem("userLongitude");
-						  
-		for(var i=0;i<data.length;i++){
-								
-			var R = 6371; // km
-			var dLat = (data[i].latitude-userLatitude) * Math.PI / 180;
-			var dLon = (data[i].longitude-userLongitude) * Math.PI / 180;
-			var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-					Math.cos(userLatitude * Math.PI / 180 ) * Math.cos(data[i].latitude * Math.PI / 180 ) *
-					Math.sin(dLon/2) * Math.sin(dLon/2);
-
-			var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-			var distance = (R * c).toFixed(1); //Km
-					
-			data[i].distance = distance;
-		}
-		
-		localStorage.setItem("parkingListData", JSON.stringify(data));
-		sorting("distance");
-		
-	});
 	
 	function sorting(sort){
 		

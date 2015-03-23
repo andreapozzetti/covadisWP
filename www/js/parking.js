@@ -69,15 +69,7 @@ function onDeviceReady(){
 		$( ".cost-max" ).html("Max: "+data.maxPrice);
 		
 	});
-	
-	$( "a#distance" ).click(function() {
-	  sorting("distance");
-	});
-	
-	$( "a#freeparking" ).click(function() {
-	  sorting("freeParking");
-	});
-	
+		
 } //DEVICE READY
 	
 //})	
