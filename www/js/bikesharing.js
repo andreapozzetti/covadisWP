@@ -40,6 +40,9 @@ function onDeviceReady(){
 					
 		data.distance = distance;
 		
+		var geoPosition = parseFloat(data.latitude).toFixed(5)+","+parseFloat(data.longitude).toFixed(5);
+		localStorage.setItem("geoPosition", geoPosition);
+		
 		$(".loader").hide();
 		$(".page-header").show();
 		$(".page-content").show();
@@ -49,6 +52,12 @@ function onDeviceReady(){
 		$( ".address" ).html(data.address);
 		$( ".description" ).html(data.description_it);
 						
+	});
+	
+	$( "button.navigate" ).click(function() {
+		var geoPosition = localStorage.getItem("geoPosition")
+		window.location.href = "maps:"+geoPosition+"";
+
 	});
 		
 } //DEVICE READY

@@ -54,7 +54,6 @@ function onDeviceReady(){
 	});
 	
 	$( "button.navigate" ).click(function() {
-		console.log("test");
 		var geoPosition = localStorage.getItem("geoPosition")
 		window.location.href = "maps:"+geoPosition+"";
 

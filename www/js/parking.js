@@ -40,6 +40,12 @@ function onDeviceReady(){
 					
 		data.distance = distance;
 		
+		localStorage.setItem("idParking", data.idParking);
+		localStorage.setItem("parkingName", parkingName);
+		
+		var geoPosition = parseFloat(data.latitude).toFixed(5)+","+parseFloat(data.longitude).toFixed(5);
+		localStorage.setItem("geoPosition", geoPosition);
+		
           switch (true) {
             case (data.freeParkingNumber>100):
                 var color = "parking-number-success";
@@ -78,6 +84,40 @@ function onDeviceReady(){
 		
 	});
 		
+	function push(alertTime,pushData) {
+		
+		var idParking = localStorage.getItem("idParking");
+		var parkingName localStorage.getItem("parkingName");
+		
+		$.ajax({
+			method: "POST",
+			url: "http://131.175.59.106:3210/api/users",
+			dataType: 'json',
+			data: {"regId": "123456", "device": "Windows", "userLanguage": "it", "idParking": idParking, "parkingName": parkingName, "alertTime": alertTime},
+			async: false
+		})
+		.done(function(data) {
+			pushData(data);
+		})
+		.fail(function(error) {
+			console.log(error)
+		})
+	}
+	
+	$( "button.navigate-15" ).click(function() {
+		var alertTime = 15;
+		var geoPosition = localStorage.getItem("geoPosition");
+		push(alertTime,function(data){});
+		window.location.href = "maps:"+geoPosition+"";
+	});
+	
+	$( "button.navigate-30" ).click(function() {
+		var alertTime = 30;
+		var geoPosition = localStorage.getItem("geoPosition");
+		push(alertTime,function(data){});
+		window.location.href = "maps:"+geoPosition+"";
+	});
+			
 } //DEVICE READY
 	
 //})	
