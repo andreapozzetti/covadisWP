@@ -41,7 +41,7 @@ function onDeviceReady(){
 		data.distance = distance;
 		
 		localStorage.setItem("idParking", data.idParking);
-		localStorage.setItem("parkingName", parkingName);
+		localStorage.setItem("parkingName", data.name);
 		
 		var geoPosition = parseFloat(data.latitude).toFixed(5)+","+parseFloat(data.longitude).toFixed(5);
 		localStorage.setItem("geoPosition", geoPosition);
@@ -87,7 +87,7 @@ function onDeviceReady(){
 	function push(alertTime,pushData) {
 		
 		var idParking = localStorage.getItem("idParking");
-		var parkingName localStorage.getItem("parkingName");
+		var parkingName = localStorage.getItem("parkingName");
 		
 		$.ajax({
 			method: "POST",
