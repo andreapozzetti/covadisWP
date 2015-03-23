@@ -21,30 +21,33 @@ function translate(jsdata)
 langCode = "it";
 
 navigator.globalization.getPreferredLanguage(
-    function (language) {
-		$( ".parking" ).html( language.value );
+    function (lng) {
+		var lang = lng.value;
+		var langCode = lang.substring(0,2);
+
+		if (langs.indexOf(langCode) > (-1)){
+			var data = {
+							"map" : "Mappa",
+							"parking" : "Parcheggi",
+							"bus-timetable" : "Orari Bus",
+							"boat-timetable" : "Orari Battelli"
+						}
+			translate(data);
+		}
+		else{
+			var data = {
+							"map" : "Map",
+							"parking" : "Parking",
+							"bus-timetable" : "Bus Timetable",
+							"boat-timetable" : "Boat Timetable"
+						}
+			translate(data);
+		}
 	},
     function () {alert('Error getting language\n');}
 );
 
-if (langs.indexOf(langCode) > (-1)){
-	var data = {
-					"map" : "Mappa",
-					"parking" : "Parcheggi",
-					"bus-timetable" : "Orari Bus",
-					"boat-timetable" : "Orari Battelli"
-				}
-	translate(data);
-}
-else{
-	var data = {
-					"map" : "Test",
-					"parking" : "Parking",
-					"bus-timetable" : "Bus Timetable",
-					"boat-timetable" : "Boat Timetable"
-				}
-	translate(data);
-}
+
 
 } //end of deviceReady
 
