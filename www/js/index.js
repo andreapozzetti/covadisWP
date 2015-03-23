@@ -3,8 +3,13 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady(){
 	
+	
 	var height = $( document ).height();
 	$('#map').css('height', height);
+	
+	var parkingMarkers = new L.layerGroup();
+	var bikesharingMarkers = new L.layerGroup();
+	var cityshuttleMarkers = new L.layerGroup();
 	
 	var map = L.map('map', {zoomControl:false}).setView([45.80806, 9.08518], 15);
 
@@ -39,10 +44,6 @@ function onDeviceReady(){
 			.addTo(map);			
 		}
 		userMarker.setLatLng([latitude, longitude]).update();
-
-		var parkingMarkers = new L.layerGroup();
-		var bikesharingMarkers = new L.layerGroup();
-		var cityshuttleMarkers = new L.layerGroup();
 		
 		parkingList(function(data){
 					

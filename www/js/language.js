@@ -1,5 +1,5 @@
-$(function() {
-//document.addEventListener("deviceready", onDeviceReady, false);
+//$(function() {
+document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady(){
 var langs = ['en', 'it'];
@@ -16,20 +16,8 @@ var translate = function (jsdata)
 	});
 }
 
-langCode = navigator.globalization.getPreferredLanguage(
-    function (lng) {
-      var lang = lng.value;
-	  alert(lang);
-      return lang.substring(0, 2);
-    },
-    function () {
-		var lang = "it";
-		return lang;
-    }
-  );
 
-
-//langCode = navigator.language.substr (0, 2);
+langCode = navigator.language.substr (0, 2);
 
 console.log(langCode);
 
@@ -42,7 +30,7 @@ else{
 
 } //end of deviceReady
 
-//});
+});
 
 
 
