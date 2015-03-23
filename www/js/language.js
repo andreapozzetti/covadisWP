@@ -2,8 +2,6 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady(){
-
-window.alert = navigator.notification.alert;
 	
 var langs = ['en', 'it'];
 var langCode = '';
@@ -40,7 +38,7 @@ else{
 
 } //end of deviceReady
 
-});
+//});
 
 
 
