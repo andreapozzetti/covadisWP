@@ -8,7 +8,7 @@ var langCode = '';
 var langJS = null;
 
 
-var translate = function (jsdata)
+function translate(jsdata)
 {	
 	$("[tkey]").each (function (index)
 	{
@@ -20,20 +20,23 @@ var translate = function (jsdata)
 
 langCode = navigator.language.substr (0, 2);
 
-alert(langCode);
-alert("test");
-
-navigator.notification.alert("Message", callBackMethod, "Title", "Button Text");
-
-function callBackMethod(){
-	alert("ciao");
-}
-
 if (langs.indexOf(langCode) > (-1)){
-	$.getJSON('js/lang/'+langCode+'.json', translate);
+	var data = {
+					"map" : "Mappa",
+					"parking" : "Parcheggi",
+					"bus-timetable" : "Orari Bus",
+					"boat-timetable" : "Orari Battelli"
+				}
+	translate(data);
 }
 else{
-	$.getJSON('js/lang/en.json', translate);
+	var data = {
+					"map" : "Map",
+					"parking" : "Parking",
+					"bus-timetable" : "Bus Timetable",
+					"boat-timetable" : "Boat Timetable"
+				}
+	translate(data);
 }
 
 } //end of deviceReady
