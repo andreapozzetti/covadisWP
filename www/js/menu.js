@@ -27,6 +27,6 @@ function onDeviceReady(){
 	});
 	
 
-}
+} //end of deviceReady
 
 //});

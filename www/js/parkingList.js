@@ -118,7 +118,7 @@ function onDeviceReady(){
 	$( "a#distance" ).click(function() {
 	  sorting("distance");
 	  $( this ).toggleClass( "active");
-	  $( "a#freeParking" ).toggleClass( "active");
+	  $( "a#freeparking" ).toggleClass( "active");
 	});
 	
 	$( "a#freeparking" ).click(function() {

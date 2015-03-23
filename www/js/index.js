@@ -246,7 +246,7 @@ function onDeviceReady(){
 	}
 	
 } //DEVICE READY
-	
+
 //})	
 
 	

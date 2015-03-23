@@ -18,6 +18,7 @@
 	<script src="js/lib/platformOverrides.js"></script>
     <script src="js/lib/jquery-1.11.2.min.js"></script>
     <script src="js/lib/leaflet.js"></script>
+	<script src="js/lib/bootstrap.min.js"></script>
 	<script src="js/PushNotification.js"></script>
 	<script src="js/menu.js"></script>
 	
@@ -77,7 +78,7 @@
 							<p class="list-group-item-text description"></p>
 						</div>
 						<div class="list-group-item">
-							<a href="" class="btn btn-primary btn-block" data-toggle="modal" data-target="#navigate">Navigate</a>
+							<a class="btn btn-primary btn-block" data-toggle="modal" data-target="#navigate">Navigate</a>
 						</div>
 						<div class="list-group-item">
 							<h4 class="list-group-item-heading" >Timetable</h4>
@@ -104,7 +105,19 @@
 						</div>
 					</div>
 				</div>
-			</div>		
+			</div>
+			<div class="modal fade" id="navigate" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-body">
+							<div class="list-group">
+							<a href="" ng-click="navigate(parkingInfo.idParking,parkingInfo.name,parkingInfo.latitude,parkingInfo.longitude,15)" class="list-group-item" data-dismiss="modal" translate>ALERT me if number of free parking became less than 5 in the next 15 minutes</a>
+							<a href="" ng-click="navigate(parkingInfo.idParking,parkingInfo.name,parkingInfo.latitude,parkingInfo.longitude,30)" class="list-group-item" data-dismiss="modal" translate>ALERT me if number of free parking became less than 5 in the next 30 minutes</a>
+							</div>
+						</div>
+				</div>
+			  </div>
+			</div>			
 		</div>
 	</div>
   </body>
