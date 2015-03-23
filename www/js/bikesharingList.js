@@ -76,7 +76,7 @@ function onDeviceReady(){
 			case "name":
 			
 				var bikesharingListData = JSON.parse(localStorage.getItem("bikesharingListData"));
-				bikesharingListData.sort(function(a,b) { return parseFloat(a.name) - parseFloat(b.name) } );
+				bikesharingListData.sort(function (a, b) { a = a.name; b = b.name; return a.localeCompare(b) });
 				
 				$( "#list" ).html( "" );
 				for(var i=0;i<bikesharingListData.length;i++){
@@ -93,10 +93,14 @@ function onDeviceReady(){
 	
 	$( "a#distance" ).click(function() {
 	  sorting("distance");
+	  $( this ).toggleClass( "active");
+	  $( "a#name" ).toggleClass( "active");
 	});
 	
 	$( "a#name" ).click(function() {
 	  sorting("name");
+	  $( this ).toggleClass( "active");
+	  $( "a#distance" ).toggleClass( "active");
 	});
 	
 } //DEVICE READY

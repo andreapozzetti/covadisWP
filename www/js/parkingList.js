@@ -117,10 +117,14 @@ function onDeviceReady(){
 	
 	$( "a#distance" ).click(function() {
 	  sorting("distance");
+	  $( this ).toggleClass( "active");
+	  $( "a#freeParking" ).toggleClass( "active");
 	});
 	
 	$( "a#freeparking" ).click(function() {
 	  sorting("freeParking");
+	  $( this ).toggleClass( "active");
+	  $( "a#distance" ).toggleClass( "active");
 	});
 	
 } //DEVICE READY

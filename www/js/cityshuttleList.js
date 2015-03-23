@@ -68,20 +68,19 @@ function onDeviceReady(){
 				$( "#list" ).html( "" );
 				for(var i=0;i<cityshuttleListData.length;i++){
 					
-					var listElement = '<a href="bikesharing.html#'+cityshuttleListData[i].idBikesharing+'" class="list-group-item"><h4 class="list-group-item-heading">'+cityshuttleListData[i].name+'</h4><p class="list-group-item-text">'+cityshuttleListData[i].address+' - '+cityshuttleListData[i].distance+' Km</p></a>';
+					var listElement = '<a href="cityshuttle.html#'+cityshuttleListData[i].idCityshuttle+'" class="list-group-item"><h4 class="list-group-item-heading">'+cityshuttleListData[i].name+'</h4><p class="list-group-item-text">'+cityshuttleListData[i].address+' - '+cityshuttleListData[i].distance+' Km</p></a>';
 					$( "#list" ).append( listElement );	
 				}
 			
 				break;
 			case "name":
-			
-				var cityshuttleListData = JSON.parse(localStorage.getItem("cityshuttleListData"));
-				cityshuttleListData.sort(function(a,b) { return parseFloat(a.name) - parseFloat(b.name) } );
+				var cityshuttleListData = JSON.parse(localStorage.getItem("cityshuttleListData"));				
+				cityshuttleListData.sort(function (a, b) { a = a.name; b = b.name; return a.localeCompare(b) });
 				
 				$( "#list" ).html( "" );
 				for(var i=0;i<cityshuttleListData.length;i++){
 					
-					var listElement = '<a href="bikesharing.html#'+cityshuttleListData[i].idBikesharing+'" class="list-group-item"><h4 class="list-group-item-heading">'+cityshuttleListData[i].name+'</h4><p class="list-group-item-text">'+cityshuttleListData[i].address+' - '+cityshuttleListData[i].distance+' Km</p></a>';
+					var listElement = '<a href="cityshuttle.html#'+cityshuttleListData[i].idCityshuttle+'" class="list-group-item"><h4 class="list-group-item-heading">'+cityshuttleListData[i].name+'</h4><p class="list-group-item-text">'+cityshuttleListData[i].address+' - '+cityshuttleListData[i].distance+' Km</p></a>';
 					
 					$( "#list" ).append( listElement );	
 				}
@@ -93,10 +92,14 @@ function onDeviceReady(){
 	
 	$( "a#distance" ).click(function() {
 	  sorting("distance");
+	  $( this ).toggleClass( "active");
+	  $( "a#name" ).toggleClass( "active");
 	});
 	
 	$( "a#name" ).click(function() {
 	  sorting("name");
+	  $( this ).toggleClass( "active");
+	  $( "a#distance" ).toggleClass( "active");
 	});
 	
 } //DEVICE READY
