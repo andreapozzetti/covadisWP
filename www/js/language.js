@@ -29,7 +29,7 @@ langCode = navigator.globalization.getPreferredLanguage(
   );
 
 
-langCode = navigator.language.substr (0, 2);
+//langCode = navigator.language.substr (0, 2);
 
 console.log(langCode);
 
