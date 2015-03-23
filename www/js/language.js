@@ -25,6 +25,8 @@ langCode = navigator.language.substr (0, 2);
 alert(langCode);
 alert("test");
 
+navigator.notification.alert("Message", callBackMethod, "Title", "Button Text");
+
 if (langs.indexOf(langCode) > (-1)){
 	$.getJSON('js/lang/'+langCode+'.json', translate);
 }
