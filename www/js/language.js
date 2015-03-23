@@ -31,7 +31,7 @@ if (langs.indexOf(langCode) > (-1)){
 }
 else{
 	var data = {
-					"map" : "Map",
+					"map" : "Test",
 					"parking" : "Parking",
 					"bus-timetable" : "Bus Timetable",
 					"boat-timetable" : "Boat Timetable"
