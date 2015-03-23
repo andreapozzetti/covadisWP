@@ -18,7 +18,7 @@ function translate(jsdata)
 }
 
 
-langCode = navigator.language.substr (0, 2);
+langCode = "it";
 
 if (langs.indexOf(langCode) > (-1)){
 	var data = {
