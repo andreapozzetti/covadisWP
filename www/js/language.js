@@ -20,6 +20,13 @@ function translate(jsdata)
 
 langCode = "it";
 
+navigator.globalization.getPreferredLanguage(
+    function (language) {
+		$( ".parking" ).html( language );
+	},
+    function () {alert('Error getting language\n');}
+);
+
 if (langs.indexOf(langCode) > (-1)){
 	var data = {
 					"map" : "Mappa",
