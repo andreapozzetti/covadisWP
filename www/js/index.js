@@ -3,6 +3,9 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady(){
 	
+	var height = $( document ).height();
+	$('#map').css('height', height);
+	
 	var map = L.map('map', {zoomControl:false}).setView([45.80806, 9.08518], 15);
 
 	L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -32,9 +35,8 @@ function onDeviceReady(){
 		if(!userMarker){
 			
 			map.panTo(new L.LatLng(latitude, longitude));
-
-			userMarker = L.marker([latitude, longitude])
-			.addTo(map);		  
+			userMarker = L.userMarker([latitude, longitude], {pulsing:false, smallIcon:false})
+			.addTo(map);			
 		}
 		userMarker.setLatLng([latitude, longitude]).update();
 
