@@ -61,7 +61,7 @@
 
     .list-item {
       color: #dfe5eb;
-      padding: 8px 0 !important;
+      padding: 8px 0;
       border-bottom: 1px solid #556270; 
       &:hover { color: #59e9df; }
     }

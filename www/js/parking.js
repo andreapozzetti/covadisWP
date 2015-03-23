@@ -2,6 +2,10 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady(){
+	
+	$(".loader").show();
+	$(".page-header").hide();
+	$(".page-content").hide();
 			
 	var idParking = window.location.hash.substr(1);
 	
@@ -49,6 +53,10 @@ function onDeviceReady(){
                 break;
             break;
           }
+
+		$(".loader").hide();
+		$(".page-header").show();
+		$(".page-content").show();
 		
 		$( ".distance" ).html(data.distance+"Km");
 		$( ".name" ).html(data.name);

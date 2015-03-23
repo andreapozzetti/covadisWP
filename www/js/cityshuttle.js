@@ -2,6 +2,10 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady(){
+	
+	$(".loader").show();
+	$(".page-header").hide();
+	$(".page-content").hide();
 			
 	var idCityshuttle = window.location.hash.substr(1);
 	
@@ -35,6 +39,10 @@ function onDeviceReady(){
 		var distance = (R * c).toFixed(1); //Km
 					
 		data.distance = distance;
+		
+		$(".loader").hide();
+		$(".page-header").show();
+		$(".page-content").show();
 				
 		$( ".distance" ).html(data.distance+"Km");
 		$( ".name" ).html(data.name);

@@ -2,6 +2,9 @@
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady(){
+	
+	$(".loader").show();
+	$(".list-group").hide();
 		
 	navigator.geolocation.getCurrentPosition(onSuccess, onError);
 	
@@ -39,6 +42,8 @@ function onDeviceReady(){
 			
 			localStorage.setItem("bikesharingListData", JSON.stringify(data));
 			sorting("distance");
+			$(".loader").hide();
+			$(".list-group").show();
 			
 		});
 	
