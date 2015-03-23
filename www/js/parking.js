@@ -71,13 +71,13 @@ function onDeviceReady(){
 		$( ".number-container" ).addClass(color);
 		$( ".description" ).html(data.description_it);
 		
-		$( ".monday" ).html("Monday: "+data.timetable.monday);
-		$( ".tuesday" ).html("Tuesday: "+data.timetable.tuesday);
-		$( ".wednesday" ).html("Wednesday: "+data.timetable.wednesday);
-		$( ".thursday" ).html("Thursday: "+data.timetable.thursday);
-		$( ".friday" ).html("Friday: "+data.timetable.friday);
-		$( ".saturday" ).html("Saturday: "+data.timetable.saturday);
-		$( ".sunday" ).html("Sunday: "+data.timetable.sunday);
+		$( ".monday" ).html("<span tkey='monday'>Monday</span>"+data.timetable.monday);
+		$( ".tuesday" ).html("<span tkey='tuesday'>Tuesday</span>"+data.timetable.tuesday);
+		$( ".wednesday" ).html("<span tkey='wednesday'>Wednesday</span>"+data.timetable.wednesday);
+		$( ".thursday" ).html("<span tkey='thursday'>thursday</span>"+data.timetable.thursday);
+		$( ".friday" ).html("<span tkey='friday'>friday</span>"+data.timetable.friday);
+		$( ".saturday" ).html("<span tkey='saturday'>saturday</span>"+data.timetable.saturday);
+		$( ".sunday" ).html("<span tkey='sunday'>sunday</span>"+data.timetable.sunday);
 		
 		$( ".cost-min" ).html("Min: "+data.minPrice);
 		$( ".cost-max" ).html("Max: "+data.maxPrice);
