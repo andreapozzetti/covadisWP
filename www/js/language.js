@@ -22,7 +22,7 @@ langCode = "it";
 
 navigator.globalization.getPreferredLanguage(
     function (language) {
-		$( ".parking" ).html( language );
+		$( ".parking" ).html( language.value );
 	},
     function () {alert('Error getting language\n');}
 );
