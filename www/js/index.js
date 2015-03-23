@@ -40,7 +40,168 @@ function onDeviceReady(){
 		}
 		userMarker.setLatLng([latitude, longitude]).update();
 
-    };
+		var parkingMarkers = new L.layerGroup();
+		var bikesharingMarkers = new L.layerGroup();
+		var cityshuttleMarkers = new L.layerGroup();
+		
+		parkingList(function(data){
+					
+			var userLatitude = localStorage.getItem("userLatitude");
+			var userLongitude = localStorage.getItem("userLongitude");
+					  
+			var greenIcon = L.icon({
+				iconUrl: 'img/parking_green.png',
+				iconSize:     [32, 37], // size of the icon
+				popupAnchor:  [0, -20] // point from which the popup should open relative to the iconAnchor
+			});
+			var orangeIcon = L.icon({
+				iconUrl: 'img/parking_yellow.png',
+				iconSize:     [32, 37], // size of the icon
+				popupAnchor:  [0, -20] // point from which the popup should open relative to the iconAnchor
+			});
+			var redIcon = L.icon({
+				iconUrl: 'img/parking_red.png',
+				iconSize:     [32, 37], // size of the icon
+				popupAnchor:  [0, -20] // point from which the popup should open relative to the iconAnchor
+			});
+
+			for(var i=0;i<data.length;i++){
+							
+			  var R = 6371; // km
+			  var dLat = (data[i].latitude-userLatitude) * Math.PI / 180;
+			  var dLon = (data[i].longitude-userLongitude) * Math.PI / 180;
+
+			  var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+				Math.cos(userLatitude * Math.PI / 180 ) * Math.cos(data[i].latitude * Math.PI / 180 ) *
+				Math.sin(dLon/2) * Math.sin(dLon/2);
+
+			  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+			  var distance = (R * c * 1000).toFixed(1); //meters
+							
+			  switch (true) {
+				case (data[i].freeParkingNumber>100):
+					var color = greenIcon;
+
+					break;
+				case (data[i].freeParkingNumber>30):
+						var color = orangeIcon;
+					break;
+				case (data[i].freeParkingNumber<10):
+						var color = redIcon;
+					break;
+				break;
+			  }
+
+			  var popupContent = "<a href='#/parking/"+data[i].idParking+"' class='map-popup'><h4>"+data[i].name+" ("+data[i].freeParkingNumber+"/"+data[i].totalParkingNumber+")</h4><p>"+data[i].address+" - "+distance+"Km   <i class='fa fa-angle-right'></i></p></a>"
+
+			  parkingMarkers.addLayer(L.marker([parseFloat(data[i].latitude), parseFloat(data[i].longitude)],{icon: color})
+			  .bindPopup(popupContent, {closeButton: false}))
+			  //.bindLabel(data[i].name, { noHide: true, direction: 'auto'}));
+			}
+
+			map.addLayer(parkingMarkers);
+		});
+		
+		bikesharingList(function(data){
+			
+			var userLatitude = localStorage.getItem("userLatitude");
+			var userLongitude = localStorage.getItem("userLongitude");
+		
+			var bikeIcon = L.icon({
+				iconUrl: 'img/bicycle.png',
+				iconSize:     [32, 37], // size of the icon
+				popupAnchor:  [0, -20] // point from which the popup should open relative to the iconAnchor
+			});
+
+			for(var i=0;i<data.length;i++){
+				
+			  var R = 6371; // km
+			  var dLat = (data[i].latitude-userLatitude) * Math.PI / 180;
+			  var dLon = (data[i].longitude-userLongitude) * Math.PI / 180;
+
+			  var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+				Math.cos(userLatitude * Math.PI / 180 ) * Math.cos(data[i].latitude * Math.PI / 180 ) *
+				Math.sin(dLon/2) * Math.sin(dLon/2);
+
+			  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+			  var distance = (R * c * 1000).toFixed(1); //meters
+
+			  var popupContent = "<a href='#/bikesharing/"+data[i].idBikesharing+"' class='map-popup'><h4>"+data[i].name+"</h4><p>"+data[i].address+" - "+distance+"Km   <i class='fa fa-angle-right'></i></p></a>";
+					  
+			  bikesharingMarkers.addLayer(L.marker([parseFloat(data[i].latitude), parseFloat(data[i].longitude)], {icon: bikeIcon})
+				.bindPopup(popupContent, {closeButton: false}))
+			  //  .bindLabel(data[i].name, { noHide: true, direction: 'auto'}));
+
+			}
+
+			map.addLayer(bikesharingMarkers);
+		
+		});
+		
+		cityshuttleList(function(data){
+			
+			var userLatitude = localStorage.getItem("userLatitude");
+			var userLongitude = localStorage.getItem("userLongitude");
+		
+			var busIcon = L.icon({
+				iconUrl: 'img/bus.png',
+				iconSize:     [32, 37], // size of the icon
+				popupAnchor:  [0, -20] // point from which the popup should open relative to the iconAnchor
+			});
+
+			for(var i=0;i<data.length;i++){
+				
+			  var R = 6371; // km
+			  var dLat = (data[i].latitude-userLatitude) * Math.PI / 180;
+			  var dLon = (data[i].longitude-userLongitude) * Math.PI / 180;
+
+			  var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+				Math.cos(userLatitude * Math.PI / 180 ) * Math.cos(data[i].latitude * Math.PI / 180 ) *
+				Math.sin(dLon/2) * Math.sin(dLon/2);
+
+			  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+			  var distance = (R * c * 1000).toFixed(1); //meters
+
+			  var popupContent = "<a href='#/cityshuttle/"+data[i].idCityshuttle+"' class='map-popup'><h4>"+data[i].name+"</h4><p>"+data[i].address+" - "+data[i].userDistance+"Km   <i class='fa fa-angle-right'></i></p></a>";
+					  
+			  cityshuttleMarkers.addLayer(L.marker([parseFloat(data[i].latitude), parseFloat(data[i].longitude)], {icon: busIcon})
+				.bindPopup(popupContent, {closeButton: false}))
+			  //  .bindLabel(data[i].name, { noHide: true, direction: 'auto'}));
+
+			}
+
+			map.addLayer(bikesharingMarkers);
+		
+		});
+	
+	}; // end of onSuccess
+	
+	$( ".parking" ).click(function() {
+	  if($( this ).toggleClass( "parking-active").hasClass('parking-active')){
+		map.addLayer(parkingMarkers); 
+	  }
+	  else{
+		map.removeLayer(parkingMarkers);  
+	  }
+	});
+	
+	$( ".bikesharing" ).click(function() {
+	   if($( this ).toggleClass( "bike-active" ).hasClass('bike-active')){
+		map.addLayer(bikesharingMarkers); 
+	  }
+	  else{
+		map.removeLayer(bikesharingMarkers);  
+	  }
+	});
+	
+	$( ".cityshuttle" ).click(function() {
+	  if($( this ).toggleClass( "cityshuttle-active" ).hasClass('cityshuttle-active')){
+		map.addLayer(cityshuttleMarkers); 
+	  }
+	  else{
+		map.removeLayer(cityshuttleMarkers);  
+	  }
+	});
 	
 	function parkingList(parkingData) {
 		$.ajax({
@@ -83,167 +244,6 @@ function onDeviceReady(){
 					console.log(error)
 		})
 	}
-	
-	var parkingMarkers = new L.layerGroup();
-	var bikesharingMarkers = new L.layerGroup();
-	var cityshuttleMarkers = new L.layerGroup();
-	
-	parkingList(function(data){
-				
-		var userLatitude = localStorage.getItem("userLatitude");
-        var userLongitude = localStorage.getItem("userLongitude");
-		  		  
-		var greenIcon = L.icon({
-			iconUrl: 'img/parking_green.png',
-			iconSize:     [32, 37], // size of the icon
-			popupAnchor:  [0, -20] // point from which the popup should open relative to the iconAnchor
-		});
-		var orangeIcon = L.icon({
-			iconUrl: 'img/parking_yellow.png',
-			iconSize:     [32, 37], // size of the icon
-			popupAnchor:  [0, -20] // point from which the popup should open relative to the iconAnchor
-		});
-		var redIcon = L.icon({
-			iconUrl: 'img/parking_red.png',
-			iconSize:     [32, 37], // size of the icon
-			popupAnchor:  [0, -20] // point from which the popup should open relative to the iconAnchor
-		});
-
-        for(var i=0;i<data.length;i++){
-						
-		  var R = 6371; // km
-		  var dLat = (data[i].latitude-userLatitude) * Math.PI / 180;
-		  var dLon = (data[i].longitude-userLongitude) * Math.PI / 180;
-
-		  var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-			Math.cos(userLatitude * Math.PI / 180 ) * Math.cos(data[i].latitude * Math.PI / 180 ) *
-			Math.sin(dLon/2) * Math.sin(dLon/2);
-
-		  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-		  var distance = (R * c * 1000).toFixed(1); //meters
-						
-          switch (true) {
-            case (data[i].freeParkingNumber>100):
-                var color = greenIcon;
-
-                break;
-            case (data[i].freeParkingNumber>30):
-                 	var color = orangeIcon;
-                break;
-            case (data[i].freeParkingNumber<10):
-				 	var color = redIcon;
-                break;
-            break;
-          }
-
-          var popupContent = "<a href='#/parking/"+data[i].idParking+"' class='map-popup'><h4>"+data[i].name+" ("+data[i].freeParkingNumber+"/"+data[i].totalParkingNumber+")</h4><p>"+data[i].address+" - "+distance+"Km   <i class='fa fa-angle-right'></i></p></a>"
-
-          parkingMarkers.addLayer(L.marker([parseFloat(data[i].latitude), parseFloat(data[i].longitude)],{icon: color})
-          .bindPopup(popupContent, {closeButton: false}))
-          //.bindLabel(data[i].name, { noHide: true, direction: 'auto'}));
-        }
-
-        map.addLayer(parkingMarkers);
-	});
-	
-	bikesharingList(function(data){
-		
-		var userLatitude = localStorage.getItem("userLatitude");
-        var userLongitude = localStorage.getItem("userLongitude");
-	
-		var bikeIcon = L.icon({
-			iconUrl: 'img/bicycle.png',
-			iconSize:     [32, 37], // size of the icon
-			popupAnchor:  [0, -20] // point from which the popup should open relative to the iconAnchor
-		});
-
-		for(var i=0;i<data.length;i++){
-			
-		  var R = 6371; // km
-		  var dLat = (data[i].latitude-userLatitude) * Math.PI / 180;
-		  var dLon = (data[i].longitude-userLongitude) * Math.PI / 180;
-
-		  var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-			Math.cos(userLatitude * Math.PI / 180 ) * Math.cos(data[i].latitude * Math.PI / 180 ) *
-			Math.sin(dLon/2) * Math.sin(dLon/2);
-
-		  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-		  var distance = (R * c * 1000).toFixed(1); //meters
-
-		  var popupContent = "<a href='#/bikesharing/"+data[i].idBikesharing+"' class='map-popup'><h4>"+data[i].name+"</h4><p>"+data[i].address+" - "+distance+"Km   <i class='fa fa-angle-right'></i></p></a>";
-				  
-		  bikesharingMarkers.addLayer(L.marker([parseFloat(data[i].latitude), parseFloat(data[i].longitude)], {icon: bikeIcon})
-			.bindPopup(popupContent, {closeButton: false}))
-		  //  .bindLabel(data[i].name, { noHide: true, direction: 'auto'}));
-
-		}
-
-		map.addLayer(bikesharingMarkers);
-	
-	});
-	
-	cityshuttleList(function(data){
-		
-		var userLatitude = localStorage.getItem("userLatitude");
-        var userLongitude = localStorage.getItem("userLongitude");
-	
-		var busIcon = L.icon({
-			iconUrl: 'img/bus.png',
-			iconSize:     [32, 37], // size of the icon
-			popupAnchor:  [0, -20] // point from which the popup should open relative to the iconAnchor
-		});
-
-		for(var i=0;i<data.length;i++){
-			
-		  var R = 6371; // km
-		  var dLat = (data[i].latitude-userLatitude) * Math.PI / 180;
-		  var dLon = (data[i].longitude-userLongitude) * Math.PI / 180;
-
-		  var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-			Math.cos(userLatitude * Math.PI / 180 ) * Math.cos(data[i].latitude * Math.PI / 180 ) *
-			Math.sin(dLon/2) * Math.sin(dLon/2);
-
-		  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-		  var distance = (R * c * 1000).toFixed(1); //meters
-
-		  var popupContent = "<a href='#/cityshuttle/"+data[i].idCityshuttle+"' class='map-popup'><h4>"+data[i].name+"</h4><p>"+data[i].address+" - "+data[i].userDistance+"Km   <i class='fa fa-angle-right'></i></p></a>";
-				  
-		  cityshuttleMarkers.addLayer(L.marker([parseFloat(data[i].latitude), parseFloat(data[i].longitude)], {icon: busIcon})
-			.bindPopup(popupContent, {closeButton: false}))
-		  //  .bindLabel(data[i].name, { noHide: true, direction: 'auto'}));
-
-		}
-
-		map.addLayer(bikesharingMarkers);
-	
-	});
-	
-	$( ".parking" ).click(function() {
-	  if($( this ).toggleClass( "parking-active").hasClass('parking-active')){
-		map.addLayer(parkingMarkers); 
-	  }
-	  else{
-		map.removeLayer(parkingMarkers);  
-	  }
-	});
-	
-	$( ".bikesharing" ).click(function() {
-	   if($( this ).toggleClass( "bike-active" ).hasClass('bike-active')){
-		map.addLayer(bikesharingMarkers); 
-	  }
-	  else{
-		map.removeLayer(bikesharingMarkers);  
-	  }
-	});
-	
-	$( ".cityshuttle" ).click(function() {
-	  if($( this ).toggleClass( "cityshuttle-active" ).hasClass('cityshuttle-active')){
-		map.addLayer(cityshuttleMarkers); 
-	  }
-	  else{
-		map.removeLayer(cityshuttleMarkers);  
-	  }
-	});
 	
 } //DEVICE READY
 	
