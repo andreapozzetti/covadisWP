@@ -27,6 +27,10 @@ alert("test");
 
 navigator.notification.alert("Message", callBackMethod, "Title", "Button Text");
 
+function callBackMethod(){
+	alert("ciao");
+}
+
 if (langs.indexOf(langCode) > (-1)){
 	$.getJSON('js/lang/'+langCode+'.json', translate);
 }
