@@ -1,0 +1,116 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>com.PhoneGap.c2dm</title>
+    </head>
+<body>
+    /*
+    NOTE:
+    This demo uses these plugins:
+    Cordova Device Plugin: http://plugins.cordova.io/#/package/org.apache.cordova.device
+    Cordova Media Plugin: http://plugins.cordova.io/#/package/org.apache.cordova.media
+
+    To add them via the CLI:
+    $ cordova plugin add org.apache.cordova.device
+    $ cordova plugin add org.apache.cordova.media
+    */
+    <script src="js/platformOverrides.js"></script>
+    <!--<script type="text/javascript" charset="utf-8" src="cordova-2.2.0.js"></script>-->
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/lib/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="js/PushNotification.js"></script>
+
+    <script type="text/javascript">
+        var pushNotification;
+
+        function onDeviceReady() {
+
+
+            $("#app-status-ul").append('<li>deviceready event received</li>');
+
+            document.addEventListener("backbutton", function (e) {
+                $("#app-status-ul").append('<li>backbutton event received</li>');
+
+                if ($("#home").length > 0) {
+                    // call this to get a new token each time. don't call it to reuse existing token.
+                    //pushNotification.unregister(successHandler, errorHandler);
+                    e.preventDefault();
+                    navigator.app.exitApp();
+                }
+                else {
+                    navigator.app.backHistory();
+                }
+            }, false);
+
+            try {
+                pushNotification = window.plugins.pushNotification;
+                $("#app-status-ul").append('<li>registering ' + device.platform + '</li>');
+
+                var pushNotification = window.plugins.pushNotification;
+				if(device.platform == "Win32NT"){
+					pushNotification.register(
+						channelHandler,
+						errorHandler,
+						{
+							"channelName": "https://covadis.azure-mobile.net/",
+							"ecb": "onNotificationWP8",
+							"uccb": "channelHandler",
+							"errcb": "jsonErrorHandler"
+						});
+				}
+                //pushNotification.register(successHandler, errorHandler, { "channelName": "PlzWdiNnQXaLFyvDEUyFixkJLhozAL64", "ecb": "onNotification" });
+
+
+            }
+            catch (err) {
+                txt = "There was an error on this page.\n\n";
+                txt += "Error description: " + err.message + "\n\n";
+                alert(txt);
+            }
+        }
+
+        function channelHandler(result) {
+			
+			$("#app-status-ul").append('<li>success: ' + JSON.stringify(result) + '</li>');
+            $("#app-status-ul").append('<li>success: ' + result.uri + '</li>');
+            // send uri to your notification server
+        }
+        function errorHandler(error) {
+            console.log('error###' + error);
+            $("#app-status-ul").append('<li>error: ' + JSON.stringify(error) + '</li>');
+        }
+
+        //handle MPNS notifications for WP8
+        window.onNotification = function(e) {
+
+            $("#app-status-ul").append('<li>push: ' + JSON.stringify(e) + '</li>');
+
+            /*
+
+            if (e.type == "toast" && e.jsonContent) {
+                pushNotification.showToastNotification(successHandler, errorHandler,
+                {
+                    "Title": e.jsonContent["wp:Text1"], "Subtitle": e.jsonContent["wp:Text2"], "NavigationUri": e.jsonContent["wp:Param"]
+                });
+            }
+
+            if (e.type == "raw" && e.jsonContent) {
+                alert(e.jsonContent.Body);
+            }
+            */
+        }
+
+        document.addEventListener('deviceready', onDeviceReady, true);
+
+    </script>
+
+    <div id="home">
+        <div id="app-status-div">
+            <ul id="app-status-ul">
+                <li>Cordova PushNotification Plugin Demo</li>
+            </ul>
+        </div>
+    </div>
+    
+</body>
+</html>

@@ -90,28 +90,37 @@ function onDeviceReady(){
 	
     function channelHandler(result) {
 			
-		$("#app-status-ul").append('<li>success: ' + JSON.stringify(result) + '</li>');
-        $("#app-status-ul").append('<li>success: ' + result.uri + '</li>');
-            // send uri to your notification server
+		var pushUrl = result.uri;
+		localStorage.setItem("pushUrl", pushUrl);
+		
     }
     
 	function errorHandler(error) {
             console.log('error###' + error);
-            $("#app-status-ul").append('<li>error: ' + JSON.stringify(error) + '</li>');
     }
+	
+	function onNotificationWP8(e) {
+
+		if (e.type == "toast" && e.jsonContent) {
+			pushNotification.showToastNotification(successHandler, errorHandler,
+			{
+				"Title": e.jsonContent["wp:Text1"], "Subtitle": e.jsonContent["wp:Text2"], "NavigationUri": e.jsonContent["wp:Param"]
+			});
+		}
+	}
 		
 	function push(alertTime,pushData) {
 		
-		var pushNotification;
 		var idParking = localStorage.getItem("idParking");
 		var parkingName = localStorage.getItem("parkingName");
 		var userLanguage = localStorage.getItem("userLanguage");
+		var regId = localStorage.getItem("pushUrl");
 		
 		$.ajax({
 			method: "POST",
 			url: "http://131.175.59.106:3210/api/users",
 			dataType: 'json',
-			data: {"regId": "123456", "device": "Windows", "userLanguage": "it", "idParking": idParking, "parkingName": parkingName, "alertTime": alertTime},
+			data: {"regId": regId, "device": "Windows", "userLanguage": userLanguage, "idParking": idParking, "parkingName": parkingName, "alertTime": alertTime},
 			async: false
 		})
 		.done(function(data) {
