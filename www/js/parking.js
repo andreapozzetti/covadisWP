@@ -72,11 +72,11 @@ function onDeviceReady(){
 		localStorage.setItem("geoPosition", geoPosition);
 		
           switch (true) {
-            case (data.freeParkingNumber>100):
+            case (data.freeParkingNumber>30):
                 var color = "parking-number-success";
 
                 break;
-            case (data.freeParkingNumber>30):
+            case (data.freeParkingNumber<30  && data.freeParkingNumber>=10):
                  	var color = "parking-number-warning";
                 break;
             case (data.freeParkingNumber<10):

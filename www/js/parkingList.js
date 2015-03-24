@@ -74,10 +74,10 @@ function onDeviceReady(){
 				for(var i=0;i<parkingListData.length;i++){
 					
 					switch (true) {
-						case (parkingListData[i].freeParkingNumber>100):
+						case (parkingListData[i].freeParkingNumber>=30):
 							var color = "badge-success";
 							break;
-						case (parkingListData[i].freeParkingNumber>30):
+						case (parkingListData[i].freeParkingNumber<30  && parkingListData[i].freeParkingNumber>=10):
 								var color = "badge-warning";
 							break;
 						case (parkingListData[i].freeParkingNumber<10):
@@ -98,10 +98,10 @@ function onDeviceReady(){
 				$( "#list" ).html( "" );
 				for(var i=0;i<parkingListData.length;i++){
 					switch (true) {
-						case (parkingListData[i].freeParkingNumber>100):
+						case (parkingListData[i].freeParkingNumber>=30):
 							var color = "badge-success";
 							break;
-						case (parkingListData[i].freeParkingNumber>30):
+						case (parkingListData[i].freeParkingNumber<30  && parkingListData[i].freeParkingNumber>=10):
 								var color = "badge-warning";
 							break;
 						case (parkingListData[i].freeParkingNumber<10):

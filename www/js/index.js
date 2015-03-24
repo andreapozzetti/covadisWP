@@ -80,11 +80,11 @@ function onDeviceReady(){
 			  var distance = (R * c).toFixed(1); //Km
 							
 			  switch (true) {
-				case (data[i].freeParkingNumber>100):
+				case (data[i].freeParkingNumber>=30):
 					var color = greenIcon;
 
 					break;
-				case (data[i].freeParkingNumber>30):
+				case (data[i].freeParkingNumber<30 && data[i].freeParkingNumber>=10):
 						var color = orangeIcon;
 					break;
 				case (data[i].freeParkingNumber<10):

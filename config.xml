@@ -16,6 +16,11 @@
 	<gap:plugin name="com.phonegap.plugins.pushplugin" version="2.4.0" />
 	<gap:plugin name="org.apache.cordova.dialogs" version="0.2.10" />
 	<gap:plugin name="org.apache.cordova.media" version="0.2.13" />
+	<icon src="icon.png" />
+    <icon gap:platform="winphone" src="res/icons/windows-phone/icon-48.png" />
+	<icon gap:platform="winphone" src="res/icons/windows-phone/icon-62-tile.png" />
+    <icon gap:platform="winphone" gap:role="background" src="res/icons/windows-phone/icon-173-tile.png" />
+    <gap:splash gap:platform="winphone" src="res/screen/windows-phone/screen-portrait.jpg" />
     <content src="index.html" />
     <access origin="*" />
 </widget>
