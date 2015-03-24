@@ -101,13 +101,14 @@ function onDeviceReady(){
     function channelHandler(result) {
 			
 		var pushUrl = result.uri;
-		$( ".description" ).html(pushUrl);
+		$( ".description" ).append("<p>"+pushUrl+"</p>");
 		localStorage.setItem("pushUrl", pushUrl);
 		
     }
     
 	function errorHandler(error) {
-            console.log('error###' + error);
+		$( ".description" ).html(error);
+        console.log('error###' + error);
     }
 	
 	function onNotificationWP8(e) {
