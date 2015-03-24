@@ -3,6 +3,10 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady(){
 	
+	var pushNotification = window.plugins.pushNotification;
+	pushNotification.register(channelHandler,errorHandler,{"channelName": "https://covadis.azure-mobile.net/","ecb": "onNotificationWP8","uccb": "channelHandler","errcb": "jsonErrorHandler"});
+
+	
 	$(".loader").show();
 	$(".page-header").hide();
 	$(".page-content").hide();
@@ -83,18 +87,25 @@ function onDeviceReady(){
 		$( ".cost-max" ).html("Max: "+data.maxPrice);
 		
 	});
+	
+    function channelHandler(result) {
+			
+		$("#app-status-ul").append('<li>success: ' + JSON.stringify(result) + '</li>');
+        $("#app-status-ul").append('<li>success: ' + result.uri + '</li>');
+            // send uri to your notification server
+    }
+    
+	function errorHandler(error) {
+            console.log('error###' + error);
+            $("#app-status-ul").append('<li>error: ' + JSON.stringify(error) + '</li>');
+    }
 		
 	function push(alertTime,pushData) {
 		
 		var pushNotification;
 		var idParking = localStorage.getItem("idParking");
 		var parkingName = localStorage.getItem("parkingName");
-		
-        pushNotification = window.plugins.pushNotification;
-		pushNotification.register(channelHandler,errorHandler,{"channelName": "https://covadis.azure-mobile.net/","ecb": "onNotificationWP8","uccb": "channelHandler","errcb": "jsonErrorHandler"});
-
-		
-
+		var userLanguage = localStorage.getItem("userLanguage");
 		
 		$.ajax({
 			method: "POST",
