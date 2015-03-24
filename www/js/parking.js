@@ -9,6 +9,7 @@ function onDeviceReady(){
 	$(".loader").show();
 	$(".page-header").hide();
 	$(".page-content").hide();
+	$( ".description" ).html("");
 			
 	var idParking = window.location.hash.substr(1);
 	
