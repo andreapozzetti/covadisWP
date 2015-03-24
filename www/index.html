@@ -60,12 +60,13 @@
 
         function successHandler(result) {
             console.log('registered###' + result.uri);
+			 $("#app-status-ul").append('<li>success: ' + JSON.stringify(result) + '</li>');
             $("#app-status-ul").append('<li>success: ' + result.uri + '</li>');
             // send uri to your notification server
         }
         function errorHandler(error) {
             console.log('error###' + error);
-            $("#app-status-ul").append('<li>success: ' + error + '</li>');
+            $("#app-status-ul").append('<li>error: ' + JSON.stringify(error) + '</li>');
         }
 
         //handle MPNS notifications for WP8
