@@ -3,13 +3,32 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady(){
 	
-	var pushNotification = window.plugins.pushNotification;
-	pushNotification.register(channelHandler,errorHandler,{"channelName": "https://covadis.azure-mobile.net/","ecb": "onNotificationWP8","uccb": "channelHandler","errcb": "jsonErrorHandler"});
-
+	try {
+		
+		var pushNotification = window.plugins.pushNotification;
+		if(device.platform == "Win32NT"){
+			pushNotification.register(
+						channelHandler,
+						errorHandler,
+						{
+							"channelName": "https://covadis.azure-mobile.net/",
+							"ecb": "onNotificationWP8",
+							"uccb": "channelHandler",
+							"errcb": "jsonErrorHandler"
+						});
+		}
+                
+    }
+    catch (err) {
+        txt = "There was an error on this page.\n\n";
+        txt += "Error description: " + err.message + "\n\n";
+        console.log(txt);
+    }
+	
 	$(".loader").show();
 	$(".page-header").hide();
 	$(".page-content").hide();
-	$( ".description" ).html("");
+
 			
 	var idParking = window.location.hash.substr(1);
 	
@@ -97,30 +116,7 @@ function onDeviceReady(){
 		$( ".cost-max" ).html("Max: "+data.maxPrice);
 		
 	});
-	
-    function channelHandler(result) {
 			
-		var pushUrl = result.uri;
-		$( ".description" ).append("<p>"+pushUrl+"</p>");
-		localStorage.setItem("pushUrl", pushUrl);
-		
-    }
-    
-	function errorHandler(error) {
-		$( ".description" ).html(error);
-        console.log('error###' + error);
-    }
-	
-	function onNotificationWP8(e) {
-
-		if (e.type == "toast" && e.jsonContent) {
-			pushNotification.showToastNotification(successHandler, errorHandler,
-			{
-				"Title": e.jsonContent["wp:Text1"], "Subtitle": e.jsonContent["wp:Text2"], "NavigationUri": e.jsonContent["wp:Param"]
-			});
-		}
-	}
-		
 	function push(alertTime,pushData) {
 		
 		var idParking = localStorage.getItem("idParking");
@@ -158,6 +154,29 @@ function onDeviceReady(){
 	});
 			
 } //DEVICE READY
+
+    function channelHandler(result) {
+			
+		var pushUrl = result.uri;
+		$( ".description" ).append("<p>"+result.uri+"</p>");
+		localStorage.setItem("pushUrl", pushUrl);
+		
+    }
+    
+	function errorHandler(error) {
+		$( ".description" ).html(error);
+        console.log('error###' + error);
+    }
+	
+	function onNotificationWP8(e) {
+
+		if (e.type == "toast" && e.jsonContent) {
+			pushNotification.showToastNotification(successHandler, errorHandler,
+			{
+				"Title": e.jsonContent["wp:Text1"], "Subtitle": e.jsonContent["wp:Text2"], "NavigationUri": e.jsonContent["wp:Param"]
+			});
+		}
+	}
 	
 //})	
 
