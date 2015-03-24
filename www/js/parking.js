@@ -3,6 +3,8 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady(){
 	
+	$( ".description" ).html("");
+	
 	try {
 		
 		var pushNotification = window.plugins.pushNotification;
@@ -95,14 +97,14 @@ function onDeviceReady(){
 		$( ".number" ).html(data.freeParkingNumber+"/<small>"+data.totalParkingNumber+"</small>");
 		$( ".number-container" ).addClass(color);
 		
-		/*
+		
 		if(userLanguage == "it"){
 			$( ".description" ).html(data.description_it);
 		}
 		else{
 			$( ".description" ).html(data.description_en);
 		}
-		*/
+		
 				
 		$( ".monday" ).html("<span tkey='monday'>Monday</span> "+data.timetable.monday);
 		$( ".tuesday" ).html("<span tkey='tuesday'>Tuesday</span> "+data.timetable.tuesday);
@@ -158,13 +160,11 @@ function onDeviceReady(){
     function channelHandler(result) {
 			
 		var pushUrl = result.uri;
-		$( ".description" ).append("<p>"+result.uri+"</p>");
 		localStorage.setItem("pushUrl", pushUrl);
 		
     }
     
 	function errorHandler(error) {
-		$( ".description" ).html(error);
         console.log('error###' + error);
     }
 	
@@ -173,7 +173,7 @@ function onDeviceReady(){
 		if (e.type == "toast" && e.jsonContent) {
 			pushNotification.showToastNotification(successHandler, errorHandler,
 			{
-				"Title": e.jsonContent["wp:Text1"], "Subtitle": e.jsonContent["wp:Text2"], "NavigationUri": e.jsonContent["wp:Param"]
+				"Title": e.jsonContent["wp:Text1"], "Subtitle": e.jsonContent["wp:Text2"]
 			});
 		}
 	}
