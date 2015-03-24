@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>coVadis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+	
+	<!-- CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/leaflet.css">
+    <link rel="stylesheet" href="css/bootswatch.min.css">
+	<link rel="stylesheet" href="css/menu.css">
+	<link rel="stylesheet" href="css/leaflet.usermarker.css">
+	
+	<!-- LIB JS -->
+	
+    <script src="cordova.js"></script>
+	<script src="js/lib/platformOverrides.js"></script>
+    <script src="js/lib/jquery-1.11.2.min.js"></script>
+    <script src="js/lib/leaflet.js"></script>
+	<script src="js/PushNotification.js"></script>
+	<script src="js/menu.js"></script>
+	<script src="js/lib/leaflet.usermarker.js"></script>
+	
+	<!-- JS -->
+	<script src="js/index.js"></script>
+	<script src="js/language.js"></script>
+
+  </head>
+  <body>
+	<div class="navbar navbar-left navbar-inverse navbar-fixed-top">
+	  <div class="container-fluid">
+		  <div class="navbar-header">
+			  <button id="menu" class="navbar-toggle navbar-toggle menu-trigger" type="button">
+			  <img src="img/menu.png">
+			  </button>
+			  <div class="navbar-brand">CO Vadis</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="site-container">
+		<!-- Navigation -->
+		<nav id="slide-menu">
+			<ul class="list">
+			  <li class="list-item"><a href="index.html" class="btn"><span tkey="map">Map</span></a></li>
+			  <li class="list-item"><a href="parkinglist.html" class="btn"><span tkey="parking">Parking</span></a></li>
+			  <li class="list-item"><a href="cityshuttlelist.html" class="btn"><span tkey="cityshuttle">City Shuttle</span></a></li>
+			  <li class="list-item"><a href="bikesharinglist.html" class="btn"><span tkey="bikesharing">Bike Sharing</span></a></li>
+			  <li class="list-item"><a class="btn bus-timetable" ><span tkey="bus-timetable">Bus Timetable</span></a></li>
+			  <li class="list-item"><a class="btn boat-timetable"><span tkey="boat-timetable">Boat Timetable</span></a></li>
+			  <li class="list-item"><a class="btn shopincomo">ShopInComo</a></li>
+			  <!--<li class="list-item" ng-click="settings()"><span class="fa fa-cog"></span><span class="list-text" translate>Settings</span></li>-->
+			</ul>
+		</nav>
+		<!-- Content panel -->
+		<div id="content"  class="content">
+			<div class="second-navbar second-navbar-fixed-top">
+				<div class="btn-group btn-group-justified">
+					<div class="btn btn-second-navbar parking parking-active"><span tkey="parking">Parking</span></div>
+					<div class="btn btn-second-navbar bikesharing bike-active">Bike Sharing</div>
+					<div class="btn btn-second-navbar cityshuttle">City Shuttle</div>
+				</div>
+			</div>
+			<div id="map"></div>
+		</div>
+	</div>
+  </body>
+</html>
+
+
