@@ -6,7 +6,6 @@ function onDeviceReady(){
 	var pushNotification = window.plugins.pushNotification;
 	pushNotification.register(channelHandler,errorHandler,{"channelName": "https://covadis.azure-mobile.net/","ecb": "onNotificationWP8","uccb": "channelHandler","errcb": "jsonErrorHandler"});
 
-	
 	$(".loader").show();
 	$(".page-header").hide();
 	$(".page-content").hide();
@@ -63,6 +62,8 @@ function onDeviceReady(){
                 break;
             break;
           }
+		  
+		var userLanguage = localStorage.getItem("userLanguage");
 
 		$(".loader").hide();
 		$(".page-header").show();
@@ -73,15 +74,23 @@ function onDeviceReady(){
 		$( ".address" ).html(data.address);
 		$( ".number" ).html(data.freeParkingNumber+"/<small>"+data.totalParkingNumber+"</small>");
 		$( ".number-container" ).addClass(color);
-		$( ".description" ).html(data.description_it);
 		
-		$( ".monday" ).html("<span tkey='monday'>Monday</span>"+data.timetable.monday);
-		$( ".tuesday" ).html("<span tkey='tuesday'>Tuesday</span>"+data.timetable.tuesday);
-		$( ".wednesday" ).html("<span tkey='wednesday'>Wednesday</span>"+data.timetable.wednesday);
-		$( ".thursday" ).html("<span tkey='thursday'>thursday</span>"+data.timetable.thursday);
-		$( ".friday" ).html("<span tkey='friday'>friday</span>"+data.timetable.friday);
-		$( ".saturday" ).html("<span tkey='saturday'>saturday</span>"+data.timetable.saturday);
-		$( ".sunday" ).html("<span tkey='sunday'>sunday</span>"+data.timetable.sunday);
+		/*
+		if(userLanguage == "it"){
+			$( ".description" ).html(data.description_it);
+		}
+		else{
+			$( ".description" ).html(data.description_en);
+		}
+		*/
+				
+		$( ".monday" ).html("<span tkey='monday'>Monday</span> "+data.timetable.monday);
+		$( ".tuesday" ).html("<span tkey='tuesday'>Tuesday</span> "+data.timetable.tuesday);
+		$( ".wednesday" ).html("<span tkey='wednesday'>Wednesday</span> "+data.timetable.wednesday);
+		$( ".thursday" ).html("<span tkey='thursday'>thursday </span>"+data.timetable.thursday);
+		$( ".friday" ).html("<span tkey='friday'>friday</span> "+data.timetable.friday);
+		$( ".saturday" ).html("<span tkey='saturday'>saturday</span> "+data.timetable.saturday);
+		$( ".sunday" ).html("<span tkey='sunday'>sunday</span> "+data.timetable.sunday);
 		
 		$( ".cost-min" ).html("Min: "+data.minPrice);
 		$( ".cost-max" ).html("Max: "+data.maxPrice);
@@ -91,6 +100,7 @@ function onDeviceReady(){
     function channelHandler(result) {
 			
 		var pushUrl = result.uri;
+		$( ".description" ).html(pushUrl);
 		localStorage.setItem("pushUrl", pushUrl);
 		
     }
