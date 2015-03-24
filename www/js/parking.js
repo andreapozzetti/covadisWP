@@ -86,8 +86,15 @@ function onDeviceReady(){
 		
 	function push(alertTime,pushData) {
 		
+		var pushNotification;
 		var idParking = localStorage.getItem("idParking");
 		var parkingName = localStorage.getItem("parkingName");
+		
+        pushNotification = window.plugins.pushNotification;
+		pushNotification.register(channelHandler,errorHandler,{"channelName": "https://covadis.azure-mobile.net/","ecb": "onNotificationWP8","uccb": "channelHandler","errcb": "jsonErrorHandler"});
+
+		
+
 		
 		$.ajax({
 			method: "POST",

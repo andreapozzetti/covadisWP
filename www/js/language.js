@@ -21,6 +21,8 @@ navigator.globalization.getPreferredLanguage(
     function (lng) {
 		var lang = lng.value;
 		var langCode = lang.substring(0,2);
+		
+		localStorage.setItem("userLanguage", langCode);
 
 		if (langs.indexOf(langCode) > (-1)){
 			var data = {
