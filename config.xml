@@ -15,6 +15,7 @@
 	<gap:plugin name="com.brodysoft.sqliteplugin" version="1.0.4" />
 	<gap:plugin name="com.phonegap.plugins.pushplugin" version="2.4.0" />
 	<gap:plugin name="org.apache.cordova.dialogs" version="0.2.10" />
+	<gap:plugin name="org.apache.cordova.media" version="0.2.13" />
     <content src="index.html" />
     <access origin="*" />
 </widget>
