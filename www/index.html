@@ -47,7 +47,18 @@
                 $("#app-status-ul").append('<li>registering ' + device.platform + '</li>');
 
                 var pushNotification = window.plugins.pushNotification;
-                pushNotification.register(successHandler, errorHandler, { "channelName": "PlzWdiNnQXaLFyvDEUyFixkJLhozAL64", "ecb": "onNotification" });
+				if(device.platform == "Win32NT"){
+					pushNotification.register(
+						channelHandler,
+						errorHandler,
+						{
+							"channelName": "PlzWdiNnQXaLFyvDEUyFixkJLhozAL64",
+							"ecb": "onNotificationWP8",
+							"uccb": "channelHandler",
+							"errcb": "jsonErrorHandler"
+						});
+				}
+                //pushNotification.register(successHandler, errorHandler, { "channelName": "PlzWdiNnQXaLFyvDEUyFixkJLhozAL64", "ecb": "onNotification" });
 
 
             }
@@ -58,9 +69,9 @@
             }
         }
 
-        function successHandler(result) {
-            console.log('registered###' + result.uri);
-			 $("#app-status-ul").append('<li>success: ' + JSON.stringify(result) + '</li>');
+        function channelHandler(result) {
+			
+			$("#app-status-ul").append('<li>success: ' + JSON.stringify(result) + '</li>');
             $("#app-status-ul").append('<li>success: ' + result.uri + '</li>');
             // send uri to your notification server
         }
