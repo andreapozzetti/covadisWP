@@ -163,7 +163,7 @@ function onDeviceReady(){
 			  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
 			  var distance = (R * c).toFixed(1); //Km
 
-			  var popupContent = "<a href='cityshuttle.html#"+data[i].idCityshuttle+"' class='map-popup'><h4>"+data[i].name+"</h4><p>"+data[i].address+" - "+data[i].userDistance+"Km   <i class='fa fa-angle-right'></i></p></a>";
+			  var popupContent = "<a href='cityshuttle.html#"+data[i].idCityshuttle+"' class='map-popup'><h4>"+data[i].name+"</h4><p>"+data[i].address+" - "+distance+"Km   <i class='fa fa-angle-right'></i></p></a>";
 					  
 			  cityshuttleMarkers.addLayer(L.marker([parseFloat(data[i].latitude), parseFloat(data[i].longitude)], {icon: busIcon})
 				.bindPopup(popupContent, {closeButton: false}))
