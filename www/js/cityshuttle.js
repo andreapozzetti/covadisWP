@@ -45,6 +45,13 @@ function onDeviceReady(){
 		$(".loader").hide();
 		$(".page-header").show();
 		$(".page-content").show();
+		
+		if(data.img){
+			$( ".page-header" ).css( "background", "url('"+data.img+"') center bottom");
+		}
+		else{
+			$( ".page-header" ).css( "background", "url('img/cityshuttle_header.jpg') center center");
+		}
 				
 		$( ".distance" ).html(data.distance+"Km");
 		$( ".name" ).html(data.name);

@@ -94,7 +94,7 @@ function onDeviceReady(){
 			$( ".page-header" ).css( "background", "url('"+data.img+"') center bottom");
 		}
 		else{
-			$( ".page-header" ).css( "background", "url('../img/parking_header.jpg') center bottom");
+			$( ".page-header" ).css( "background", "url('img/parking_header.jpg') center center");
 		}
 		
 		$( ".distance" ).html(data.distance+"Km");
