@@ -90,6 +90,12 @@ function onDeviceReady(){
 		$(".loader").hide();
 		$(".page-header").show();
 		$(".page-content").show();
+		if(data.img){
+			$( ".page-header" ).css( "background", "url('"+data.img+"') center bottom");
+		}
+		else{
+			$( ".page-header" ).css( "background", "url('../img/parking_header.jpg') center bottom");
+		}
 		
 		$( ".distance" ).html(data.distance+"Km");
 		$( ".name" ).html(data.name);
