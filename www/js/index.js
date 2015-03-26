@@ -6,8 +6,6 @@ function onDeviceReady(){
 	var height = $( document ).height();
 	$('#map').css('height', height);
 	
-	map.spin(true, {lines: 1, length: 11, width: 5});
-	
 	var parkingMarkers = new L.layerGroup();
 	var bikesharingMarkers = new L.layerGroup();
 	var cityshuttleMarkers = new L.layerGroup();
@@ -19,6 +17,8 @@ function onDeviceReady(){
 			zoomControl: false,
 			attributionControl: false
 	}).addTo(map);
+	
+	map.spin(true, {lines: 1, length: 11, width: 5});
 	
 	setTimeout(map.invalidateSize.bind(map));
 	
