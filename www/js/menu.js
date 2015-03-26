@@ -23,7 +23,7 @@ function onDeviceReady(){
 	});
 	
 	$( "a.shopincomo" ).click(function() {
-	  var refshopincomo = window.open('shopincomo://', '_system');
+	  var refshopincomo = window.open('http://www.windowsphone.com/it-it/store/app/shopincomo/ddcf9cb6-2689-4e43-b0ae-66b147977c3f', '_system');
 	});
 	
 
