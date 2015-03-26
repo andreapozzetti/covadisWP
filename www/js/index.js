@@ -3,9 +3,10 @@ document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady(){
 	
-	
 	var height = $( document ).height();
 	$('#map').css('height', height);
+	
+	map.spin(true, {lines: 1, length: 11, width: 5});
 	
 	var parkingMarkers = new L.layerGroup();
 	var bikesharingMarkers = new L.layerGroup();
@@ -46,6 +47,8 @@ function onDeviceReady(){
 		userMarker.setLatLng([latitude, longitude]).update();
 		
 		parkingList(function(data){
+			
+			map.spin(false)
 					
 			var userLatitude = localStorage.getItem("userLatitude");
 			var userLongitude = localStorage.getItem("userLongitude");
