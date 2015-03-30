@@ -142,42 +142,6 @@ function onDeviceReady(){
 		
 		});
 		
-		cityshuttleList(function(data){
-			
-			var userLatitude = localStorage.getItem("userLatitude");
-			var userLongitude = localStorage.getItem("userLongitude");
-		
-			var busIcon = L.icon({
-				iconUrl: 'img/bus.png',
-				iconSize:     [32, 37], // size of the icon
-				popupAnchor:  [0, -20] // point from which the popup should open relative to the iconAnchor
-			});
-
-			for(var i=0;i<data.length;i++){
-				
-			  var R = 6371; // km
-			  var dLat = (data[i].latitude-userLatitude) * Math.PI / 180;
-			  var dLon = (data[i].longitude-userLongitude) * Math.PI / 180;
-
-			  var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-				Math.cos(userLatitude * Math.PI / 180 ) * Math.cos(data[i].latitude * Math.PI / 180 ) *
-				Math.sin(dLon/2) * Math.sin(dLon/2);
-
-			  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-			  var distance = (R * c).toFixed(1); //Km
-
-			  var popupContent = "<a href='cityshuttle.html#"+data[i].idCityshuttle+"' class='map-popup'><h4>"+data[i].name+"</h4><p>"+data[i].address+" - "+distance+"Km   <i class='fa fa-angle-right'></i></p></a>";
-					  
-			  cityshuttleMarkers.addLayer(L.marker([parseFloat(data[i].latitude), parseFloat(data[i].longitude)], {icon: busIcon})
-				.bindPopup(popupContent, {closeButton: false}))
-			  //  .bindLabel(data[i].name, { noHide: true, direction: 'auto'}));
-
-			}
-
-			map.addLayer(bikesharingMarkers);
-		
-		});
-	
 	}; // end of onSuccess
 	
 	$( ".parking" ).click(function() {
@@ -195,15 +159,6 @@ function onDeviceReady(){
 	  }
 	  else{
 		map.removeLayer(bikesharingMarkers);  
-	  }
-	});
-	
-	$( ".cityshuttle" ).click(function() {
-	  if($( this ).toggleClass( "cityshuttle-active" ).hasClass('cityshuttle-active')){
-		map.addLayer(cityshuttleMarkers); 
-	  }
-	  else{
-		map.removeLayer(cityshuttleMarkers);  
 	  }
 	});
 	
@@ -234,21 +189,7 @@ function onDeviceReady(){
 					console.log(error)
 		})
 	}
-	
-	function cityshuttleList(cityshuttleData) {
-		$.ajax({
-			url: "http://131.175.59.106:3210/api/cityshuttle",
-			dataType: 'json',
-			async: false
-		})
-		.done(function(data) {
-			cityshuttleData(data);
-		})
-		.fail(function(error) {
-					console.log(error)
-		})
-	}
-	
+		
 } //DEVICE READY
 
 //})	
