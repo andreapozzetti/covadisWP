@@ -15,11 +15,11 @@ function onDeviceReady(){
 	});
 	
 	$( "a.bus-timetable" ).click(function() {
-	  var refbus = window.open('http://www.asfautolinee.it/Portals/5/Documents/Orari/I1213/urbano/Urbano-invernale.pdf', '_blank', 'location=no');
+	  var refbus = window.open('http://www.asfautolinee.it/', '_blank', 'location=no');
 	});
 	
 	$( "a.boat-timetable" ).click(function() {
-	  var refboat = window.open('http://www.navigazionelaghi.it/ita/c_orari.asp', '_blank', 'location=no');
+	  var refboat = window.open('http://www.navigazionelaghi.it/', '_blank', 'location=no');
 	});
 	
 	$( "a.shopincomo" ).click(function() {
