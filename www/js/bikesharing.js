@@ -48,7 +48,7 @@ function onDeviceReady(){
 		$(".page-content").show();
 		
 		if(data.img){
-			$( ".page-header" ).css( "background", "url('"+data.img+"') center bottom");
+			$( ".page-header" ).css( "background", "url('"+data.img+"') center center");
 		}
 		else{
 			$( ".page-header" ).css( "background", "url('img/bikesharing_header.jpg') center center");

@@ -455,6 +455,9 @@ a.list-group-item:hover, a.list-group-item:focus {
   -webkit-box-shadow: inset 1px -40px 69px -13px #525151;
   -moz-box-shadow: inset 1px -40px 69px -13px #525151;
   -o-box-shadow: inset 1px -40px 69px -13px #525151;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
 }
 
 .page-header:before, .page-header:after{
@@ -474,6 +477,7 @@ a.list-group-item:hover, a.list-group-item:focus {
   color: #ffffff;
   margin-bottom: 0;
   font-size: 20px;
+  font-size: 4vmin;
   margin-top: 75px;
 }
 
@@ -481,6 +485,7 @@ a.list-group-item:hover, a.list-group-item:focus {
   color: #ffffff;
   margin-top: 0;
   font-size: 15px;
+  font-size: 3vmin;
 }
 
 .distance{
