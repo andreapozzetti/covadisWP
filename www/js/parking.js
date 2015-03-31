@@ -147,6 +147,12 @@ function onDeviceReady(){
 		})
 	}
 	
+	$( "button.navigate" ).click(function() {
+		var geoPosition = localStorage.getItem("geoPosition")
+		window.location.href = "maps:"+geoPosition+"";
+
+	});
+	
 	$( "button.navigate-15" ).click(function() {
 		var alertTime = 15;
 		var geoPosition = localStorage.getItem("geoPosition");
