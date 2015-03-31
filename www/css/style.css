@@ -455,9 +455,6 @@ a.list-group-item:hover, a.list-group-item:focus {
   -webkit-box-shadow: inset 1px -40px 69px -13px #525151;
   -moz-box-shadow: inset 1px -40px 69px -13px #525151;
   -o-box-shadow: inset 1px -40px 69px -13px #525151;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
 }
 
 .page-header:before, .page-header:after{
